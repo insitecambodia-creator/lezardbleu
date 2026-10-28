@@ -11,7 +11,7 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
 
 <section class="section section--warm" id="form" aria-labelledby="contact-title">
   <div class="wrap contact__grid">
-    <div class="contact__aside">
+    <div class="contact__aside" data-reveal>
       <span class="rule" aria-hidden="true"></span>
       <h2 id="contact-title">{c.title}</h2>
       <p>{c.intro}</p>
@@ -29,6 +29,8 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
 
     <form
       class="form"
+      data-reveal
+      style="--i: 1"
       method="post"
       action="/api/contact"
       data-sending={c.sending}
