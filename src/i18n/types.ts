@@ -24,7 +24,7 @@ export interface Content {
   atelier: { title: string; paragraphs: string[]; cta: string };
   services: { title: string; items: Service[]; cta: string };
   printing: { title: string; paragraphs: string[]; imageAlt: string; cta: string };
-  antiques: { title: string; paragraphs: string[]; cta: string; galleryCta: string; imageAlt: string };
+  antiques: { title: string; paragraphs: string[]; galleryCta: string; imageAlt: string };
   gallery: {
     metaTitle: string;
     metaDescription: string;

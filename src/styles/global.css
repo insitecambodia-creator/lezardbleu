@@ -817,14 +817,18 @@ h3 {
   }
 }
 
-.split__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1rem;
-  margin-top: 0.75rem;
+/* A quiet inline link: small, no button, so it does not pull visitors away */
+.text-link {
+  margin-top: 0.5rem;
+  color: var(--orange-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
-.split__actions .btn {
-  margin-top: 0;
+.text-link:hover,
+.text-link:focus-visible {
+  border-bottom-color: currentColor;
 }
 .split__media--photo img {
   aspect-ratio: 4 / 5;
