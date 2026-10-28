@@ -1,6 +1,6 @@
 ---
 import { site, interestKeys, type Locale } from '../config';
-import { getContent } from '../i18n';
+import { getContent, localePath } from '../i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale);
@@ -35,6 +35,7 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
       action="/api/contact"
       data-sending={c.sending}
       data-success={c.success}
+      data-thanks-url={localePath(locale, 'thank-you/')}
       data-error={c.error}
       data-captcha-error={c.captchaError}
       novalidate
@@ -148,9 +149,14 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
         });
         const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
         if (!res.ok || !json.ok) throw new Error(json.error ?? 'failed');
-        form.reset();
         say('success', form.dataset.success ?? '');
         (window as any).dataLayer?.push({ event: 'contact_form_submit' });
+        // Carry the first name to the thank-you page without putting it in the URL (it would end up in analytics)
+        try {
+          sessionStorage.setItem('lb-thanks-name', String(data.get('firstName') ?? '').trim().slice(0, 40));
+        } catch {}
+        form.reset();
+        if (form.dataset.thanksUrl) location.assign(form.dataset.thanksUrl);
       } catch {
         say('error', form.dataset.error ?? '');
       } finally {

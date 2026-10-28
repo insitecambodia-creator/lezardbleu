@@ -40,6 +40,16 @@ export interface Content {
   };
   /** Petit Futé "Recommandé 2026" review. The quote is theirs, word for word (French original). */
   press: { eyebrow: string; quote: string; source: string; note: string; cta: string; quoteLang?: string };
+  thanks: {
+    metaTitle: string;
+    title: string;
+    /** {name} is replaced with the first name the visitor typed */
+    titleNamed: string;
+    received: string;
+    /** **bold** marks the emphasised words */
+    teaser: string;
+    back: string;
+  };
   clients: { title: string; intro: string; readMore: string; more: string };
   contact: {
     title: string;

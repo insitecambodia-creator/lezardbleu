@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import type { Locale } from '../config';
+import { getContent, localePath } from '../i18n';
+import photo from '../assets/images/storefront-2026-2.jpg';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+const th = t.thanks;
+
+
+const teaser = th.teaser.split('**');
+---
+
+<Layout locale={locale} page="thank-you/" title={th.metaTitle} description={th.metaTitle} noindex>
+  <main id="content" class="thanks" data-template={th.titleNamed}>
+    <Image
+      class="thanks__bg"
+      src={photo}
+      alt=""
+      widths={[800, 1280, 1579]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+    />
+    <div class="thanks__shade" aria-hidden="true"></div>
+    <div class="thanks__inner">
+      <h1 class="thanks__title" id="thanks-title">{th.title}</h1>
+      <p class="thanks__received">{th.received}</p>
+      <p class="thanks__teaser">{teaser.map((part, i) => (i % 2 ? <strong>{part}</strong> : part))}</p>
+      <div class="thanks__sheets" aria-hidden="true">
+        <span class="thanks__sheet thanks__sheet--small"></span>
+        <span class="thanks__line"></span>
+        <span class="thanks__sheet thanks__sheet--large"></span>
+      </div>
+      <a class="btn btn--white" href={localePath(locale)}>{th.back}</a>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // "Thank you Franck": the form leaves the first name in sessionStorage (never in the URL).
+  const root = document.querySelector<HTMLElement>('.thanks');
+  const title = document.getElementById('thanks-title');
+  if (root && title) {
+    let name = '';
+    try {
+      name = (sessionStorage.getItem('lb-thanks-name') ?? '').trim().slice(0, 40);
+    } catch {}
+    const template = root.dataset.template ?? '';
+    if (name && template.includes('{name}')) title.textContent = template.replace('{name}', name);
+  }
+</script>

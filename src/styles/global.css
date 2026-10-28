@@ -989,3 +989,99 @@ dialog.lightbox::backdrop {
     translate: none;
   }
 }
+
+/* ---------- Thank-you page ---------- */
+.thanks {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 3rem var(--gutter);
+  overflow: hidden;
+  color: #fff;
+  background: var(--blue);
+  text-align: center;
+}
+.thanks__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.thanks__shade {
+  position: absolute;
+  inset: 0;
+  background: rgb(8 18 28 / 0.62);
+}
+.thanks__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  max-width: 40rem;
+}
+.thanks__title {
+  color: #fff;
+  font-size: clamp(2.4rem, 1.4rem + 4.5vw, 4.5rem);
+  line-height: 1.1;
+}
+.thanks__received {
+  font-size: 1.05rem;
+  color: #e3e8ee;
+}
+.thanks__teaser {
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+.thanks__teaser strong {
+  font-weight: 700;
+}
+.thanks .btn--white {
+  margin-top: 0.5rem;
+}
+
+/* Two paper sheets and a line: a quiet nod to a poster being framed */
+.thanks__sheets {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  height: 7rem;
+  margin-block: 0.5rem;
+}
+.thanks__sheet {
+  display: block;
+  background: #f7f5f1;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+}
+.thanks__sheet--small {
+  width: 1.5rem;
+  height: 1.9rem;
+  rotate: -18deg;
+}
+.thanks__sheet--large {
+  width: 4.2rem;
+  height: 5.4rem;
+  rotate: 14deg;
+}
+.thanks__line {
+  width: 2.4rem;
+  height: 1px;
+  background: rgb(255 255 255 / 0.7);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .thanks__sheet--small {
+    animation: sheet-small 4.5s ease-in-out infinite alternate;
+  }
+  .thanks__sheet--large {
+    animation: sheet-large 5.5s ease-in-out infinite alternate;
+  }
+  @keyframes sheet-small {
+    from { translate: 0 0.5rem; rotate: -24deg; }
+    to { translate: 0 -0.7rem; rotate: -10deg; }
+  }
+  @keyframes sheet-large {
+    from { translate: 0 -0.6rem; rotate: 8deg; }
+    to { translate: 0 0.6rem; rotate: 19deg; }
+  }
+}

@@ -96,6 +96,15 @@ Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test web
    until the checks in `CONTENT-TODO.md` pass**, and keep a backup for rollback (re-point DNS).
    Preserve existing email DNS records (MX, SPF, DKIM).
 
+## Thank-you page
+
+After a successful send the form redirects to `/thank-you/` (`/fr/thank-you/`), a full-screen page over
+`src/assets/images/storefront-2026-2.jpg`. The visitor's first name is shown ("Thank you Franck") but is passed
+through `sessionStorage`, never the URL, so it does not end up in analytics. The page is `noindex` and left
+out of the sitemap. The form also pushes a `contact_form_submit` event to the GTM data layer: use that (or the
+`/thank-you/` page view) as the conversion in Google Analytics, not both. Text lives under `thanks` in
+`src/i18n/`.
+
 ## Design notes
 
 - Colours and type follow `docs/company-and-website-brief.md`. Body text uses `#6E6E6E`, not the
