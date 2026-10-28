@@ -3,6 +3,8 @@
   "name": "lezardbleu",
   "main": "worker/index.ts",
   "compatibility_date": "2026-10-01",
+  // Keep variables and secrets set in the Cloudflare dashboard (e.g. N8N_WEBHOOK_URL) when deploying from Git.
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

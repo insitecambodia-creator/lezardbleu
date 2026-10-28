@@ -61,6 +61,12 @@ npx wrangler secret put N8N_WEBHOOK_TOKEN    # optional: any random string
 npx wrangler secret put TURNSTILE_SECRET     # from the Cloudflare Turnstile dashboard
 ```
 
+Add them in the dashboard (Workers & Pages → `lezardbleu` → Settings → Variables and Secrets) with
+**Type: Secret**. `wrangler.jsonc` sets `keep_vars: true` so a deployment never wipes dashboard variables, but a
+Secret is the safe choice for a webhook URL anyway. If the form suddenly says "something went wrong" after a
+deploy, check that `N8N_WEBHOOK_URL` still exists there and that the n8n workflow is **Active**; the Worker
+logs (Logs tab) show "n8n responded NNN" or "Forwarding to n8n failed".
+
 Also set the public Turnstile **site key** as the build variable `PUBLIC_TURNSTILE_SITE_KEY`
 (Workers Builds → Settings → Variables, or a local `.env`). Without a site key the widget is
 hidden; without `TURNSTILE_SECRET` the Worker skips verification. Set both before launch.
