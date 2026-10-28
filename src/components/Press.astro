@@ -1,6 +1,7 @@
 ---
 import { site, type Locale } from '../config';
 import { getContent } from '../i18n';
+import logoUrl from '../assets/brand/petit-fute-logo-trimmed.svg?url';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale);
@@ -17,7 +18,9 @@ const quoteLang = locale === 'fr' ? 'fr' : undefined;
         <p>{p.quote}</p>
       </blockquote>
       <figcaption>
-        <span class="press__source">{p.source}</span>
+        <span class="press__logo">
+          <img src={logoUrl} alt={p.source} width="608" height="197" loading="lazy" decoding="async" />
+        </span>
         <span class="press__note">{p.note}</span>
         {
           site.petitFuteUrl && (

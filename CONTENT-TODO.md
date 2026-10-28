@@ -20,8 +20,9 @@ Internal checklist, not published on the site.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is
       their wording verbatim (first four sentences of the review, `[…]` marks the cut); the English is our
       translation, labelled as such. Confirm Petit Futé's terms allow quoting it, add the listing URL as
-      `petitFuteUrl` in `src/config.ts` (shows a "Read the review" link), and do not use their logo or the
-      "Recommandé" badge artwork without permission.
+      `petitFuteUrl` in `src/config.ts` (shows a "Read the review" link). Their logo (supplied by the owner, trimmed
+      copy in `src/assets/brand/`) is shown small on a white badge: confirm their terms allow it, and do not
+      use the "Recommandé" badge artwork without permission.
 - [ ] **Phone number mismatch**: the Petit Futé listing shows `+855 12 811 678`, the site shows
       `+855 17 935 968`. Confirm which is current and ask Petit Futé to correct their listing if needed.
 
