@@ -90,6 +90,14 @@ export const en: Content = {
     note: 'Review written by Petit Futé’s professional authors. Translated from the French original.',
     cta: 'Read the review',
   },
+  thanks: {
+    metaTitle: 'Thank you – Le Lezard Bleu',
+    title: 'Thank you',
+    titleNamed: 'Thank you {name}',
+    received: 'We have received your message and will be in touch soon.',
+    teaser: 'Did you know you can send us a **small image**? We will turn it into a beautifully framed poster.',
+    back: 'Back to the site',
+  },
   clients: {
     title: 'Trusted by many',
     intro:

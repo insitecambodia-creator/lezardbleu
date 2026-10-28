@@ -91,6 +91,14 @@ export const fr: Content = {
     note: 'Avis rédigé par les auteurs professionnels du Petit Futé.',
     cta: 'Lire l’avis',
   },
+  thanks: {
+    metaTitle: 'Merci – Le Lezard Bleu',
+    title: 'Merci',
+    titleNamed: 'Merci {name}',
+    received: 'Nous avons bien reçu votre message et reviendrons vers vous rapidement.',
+    teaser: 'Saviez-vous que vous pouvez nous envoyer une **petite image** ? Nous en ferons une affiche joliment encadrée.',
+    back: 'Retour au site',
+  },
   clients: {
     title: 'Ils nous font confiance',
     intro:
