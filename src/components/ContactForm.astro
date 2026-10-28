@@ -1,0 +1,160 @@
+---
+import { site, interestKeys, type Locale } from '../config';
+import { getContent } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+const c = t.contact;
+// Turnstile has no Khmer widget language; let it detect the browser language instead.
+const turnstileLang = locale === 'km' ? 'auto' : locale;
+---
+
+<section class="section section--warm" id="form" aria-labelledby="contact-title">
+  <div class="wrap contact__grid">
+    <div class="contact__aside">
+      <span class="rule" aria-hidden="true"></span>
+      <h2 id="contact-title">{c.title}</h2>
+      <p>{c.intro}</p>
+      <address>
+        {site.address.street}<br />
+        {site.address.locality}, {site.address.countryName}
+      </address>
+      <p>
+        <a href={site.phone.href}>{site.phone.display}</a><br />
+        <a href={site.telegram} target="_blank" rel="noopener">
+          {t.ui.telegram}<span class="visually-hidden"> ({t.ui.opensNewTab})</span>
+        </a>
+      </p>
+    </div>
+
+    <form
+      class="form"
+      method="post"
+      action="/api/contact"
+      data-sending={c.sending}
+      data-success={c.success}
+      data-error={c.error}
+      data-captcha-error={c.captchaError}
+      novalidate
+    >
+      <div class="form__row">
+        <div class="field">
+          <label for="firstName">{c.firstName} <span class="visually-hidden">({c.required})</span></label>
+          <input id="firstName" name="firstName" type="text" autocomplete="given-name" required maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="lastName">{c.lastName} <span class="visually-hidden">({c.required})</span></label>
+          <input id="lastName" name="lastName" type="text" autocomplete="family-name" required maxlength="80" />
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="field">
+          <label for="phone">{c.phone} <span class="hint">({c.optional})</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+        </div>
+        <div class="field">
+          <label for="email">{c.email} <span class="visually-hidden">({c.required})</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required maxlength="160" spellcheck="false" />
+        </div>
+      </div>
+      <fieldset>
+        <legend>{c.interestLegend}</legend>
+        <div class="checks">
+          {
+            interestKeys.map((key) => (
+              <label>
+                <input type="checkbox" name="interests" value={key} />
+                {c.interests[key]}
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="message">{c.message} <span class="hint">({c.optional})</span></label>
+        <textarea id="message" name="message" maxlength="3000"></textarea>
+      </div>
+
+      <!-- Honeypot: invisible to people, tempting to bots -->
+      <div class="hp" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <input type="hidden" name="locale" value={locale} />
+
+      {
+        site.turnstileSiteKey && (
+          <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language={turnstileLang} />
+        )
+      }
+
+      <div class="form__submit">
+        <button class="btn" type="submit">{c.submit}</button>
+        <p class="form__status" role="status" aria-live="polite"></p>
+      </div>
+      <noscript>
+        <p>{c.error}</p>
+      </noscript>
+    </form>
+  </div>
+</section>
+
+{
+  site.turnstileSiteKey && (
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+  )
+}
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form.form');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('.form__status')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const say = (state: string, text: string) => {
+      status.dataset.state = state;
+      status.textContent = text;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      if (form.querySelector('.cf-turnstile') && !data.get('cf-turnstile-response')) {
+        say('error', form.dataset.captchaError ?? '');
+        return;
+      }
+
+      button.disabled = true;
+      say('pending', form.dataset.sending ?? '');
+      try {
+        const body = {
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          phone: data.get('phone'),
+          email: data.get('email'),
+          interests: data.getAll('interests'),
+          message: data.get('message'),
+          website: data.get('website'),
+          locale: data.get('locale'),
+          pageUrl: location.href,
+          turnstileToken: data.get('cf-turnstile-response'),
+        };
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+        if (!res.ok || !json.ok) throw new Error(json.error ?? 'failed');
+        form.reset();
+        say('success', form.dataset.success ?? '');
+        (window as any).dataLayer?.push({ event: 'contact_form_submit' });
+      } catch {
+        say('error', form.dataset.error ?? '');
+      } finally {
+        button.disabled = false;
+        (window as any).turnstile?.reset();
+      }
+    });
+  }
+</script>

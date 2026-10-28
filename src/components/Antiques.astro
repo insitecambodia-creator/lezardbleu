@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import type { Locale } from '../config';
+import { getContent } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale).antiques;
+
+// Optional photo: drop an image into src/assets/antiques/ and it appears here.
+const photos = import.meta.glob<ImageMetadata>('../assets/antiques/*.{webp,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+const photo = Object.entries(photos).sort(([a], [b]) => a.localeCompare(b))[0]?.[1];
+---
+
+<section class="section section--warm" aria-labelledby="antiques-title">
+  <div class:list={['wrap', 'split', { 'split--single': !photo }]}>
+    <div class="split__body">
+      <span class="rule" aria-hidden="true"></span>
+      <h2 id="antiques-title">{t.title}</h2>
+      {t.paragraphs.map((p) => <p>{p}</p>)}
+      <a class="btn" href="#form">{t.cta}</a>
+    </div>
+    {
+      photo && (
+        <div class="split__media">
+          <Image src={photo} alt="" widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
+        </div>
+      )
+    }
+  </div>
+</section>

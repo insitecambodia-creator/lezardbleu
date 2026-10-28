@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import type { Locale } from '../config';
+import { getContent } from '../i18n';
+import printing from '../assets/images/printing.webp';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale).printing;
+---
+
+<section class="section" aria-labelledby="printing-title">
+  <div class="wrap split">
+    <div class="split__media">
+      <Image src={printing} alt={t.imageAlt} widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
+    </div>
+    <div class="split__body">
+      <span class="rule" aria-hidden="true"></span>
+      <h2 id="printing-title">{t.title}</h2>
+      {t.paragraphs.map((p) => <p>{p}</p>)}
+      <a class="btn" href="#form">{t.cta}</a>
+    </div>
+  </div>
+</section>

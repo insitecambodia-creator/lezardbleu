@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lezardbleu",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // Only /api/* runs the Worker; everything else is served straight from the static build.
+    "run_worker_first": ["/api/*"]
+  }
+  // Secrets (set with `wrangler secret put <NAME>`; never commit them):
+  //   N8N_WEBHOOK_URL     production n8n webhook that receives enquiries
+  //   N8N_WEBHOOK_TOKEN   optional shared secret, sent to n8n as the X-Webhook-Token header
+  //   TURNSTILE_SECRET    Cloudflare Turnstile secret key
+}

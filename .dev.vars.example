@@ -1,0 +1,5 @@
+# Copy to .dev.vars for `npm run preview` (wrangler dev). Never commit .dev.vars.
+N8N_WEBHOOK_URL=http://localhost:5678/webhook-test/lezard-bleu-contact
+N8N_WEBHOOK_TOKEN=
+# Cloudflare test secret that always passes: 1x0000000000000000000000000000000AA
+TURNSTILE_SECRET=

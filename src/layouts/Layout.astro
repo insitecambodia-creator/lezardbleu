@@ -1,0 +1,94 @@
+---
+import { getImage } from 'astro:assets';
+import '../styles/global.css';
+import { site, type Locale } from '../config';
+import { getContent, publishedLocales, localePath } from '../i18n';
+import hero from '../assets/images/hero.webp';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getContent(locale);
+
+const abs = (path: string) => new URL(path, site.url).href;
+const canonical = abs(Astro.url.pathname);
+const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
+const ogLocale = { en: 'en_US', fr: 'fr_FR', km: 'km_KH' }[locale];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.name,
+  url: site.url,
+  image: abs(og.src),
+  telephone: site.phone.display,
+  description: t.meta.description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.locality,
+    addressCountry: site.address.country,
+  },
+  sameAs: [site.telegram],
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta name="theme-color" content="#10273d" />
+    <link rel="canonical" href={canonical} />
+    {
+      publishedLocales.map((l) => (
+        <link rel="alternate" hreflang={l} href={abs(localePath(l))} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={abs(localePath('en'))} />
+    {!t.published && <meta name="robots" content="noindex" />}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={abs(og.src)} />
+    <meta property="og:image:alt" content={t.meta.ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Google Tag Manager, loaded once the page itself has finished loading -->
+    <script is:inline define:vars={{ id: site.gtmId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+      window.addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+        document.head.appendChild(s);
+      });
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"></iframe>
+    </noscript>
+    <a class="skip-link" href="#content">{t.ui.skip}</a>
+    <slot />
+  </body>
+</html>
