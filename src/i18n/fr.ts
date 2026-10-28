@@ -64,9 +64,7 @@ export const fr: Content = {
     title: 'Objets et antiquités khmers',
     paragraphs: [
       'Rendez-vous au Lezard Bleu, rue 240, pour découvrir les objets et antiquités khmers proposés dans la boutique.',
-      'Contactez-nous pour vous renseigner sur une pièce en particulier ou pour en savoir plus sur la sélection actuelle.',
     ],
-    cta: 'Se renseigner sur une pièce',
     galleryCta: 'Voir la galerie',
     imageAlt: 'Une statue en bronze à plusieurs bras, dans la boutique',
   },

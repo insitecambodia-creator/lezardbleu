@@ -63,9 +63,7 @@ export const en: Content = {
     title: 'Khmer Artifacts & Antiques',
     paragraphs: [
       'Visit Le Lezard Bleu on Street 240 to discover the Khmer antique objects and artifacts available in the shop.',
-      'Contact us to ask about a particular item or to find out more about the current selection.',
     ],
-    cta: 'Enquire about an item',
     galleryCta: 'View the gallery',
     imageAlt: 'A bronze figure with several arms, standing in the shop',
   },

@@ -14,10 +14,7 @@ const t = getContent(locale).antiques;
       <span class="rule" aria-hidden="true"></span>
       <h2 id="antiques-title">{t.title}</h2>
       {t.paragraphs.map((p) => <p>{p}</p>)}
-      <div class="split__actions">
-        <a class="btn" href="#form">{t.cta}</a>
-        <a class="btn btn--white" href={localePath(locale, 'gallery/')}>{t.galleryCta}</a>
-      </div>
+      <a class="text-link" href={localePath(locale, 'gallery/')}>{t.galleryCta}</a>
     </div>
     <div class="split__media split__media--photo" data-reveal style="--i: 1">
       <Image
