@@ -66,6 +66,14 @@ export const fr: Content = {
     ],
     cta: 'Se renseigner sur une pièce',
   },
+  press: {
+    eyebrow: 'Recommandé · Petit Futé 2026',
+    quote:
+      'Très belle boutique d’art traditionnel et contemporain, beaucoup de créations originales, de sculptures, peintures, photographies… Ce magasin à la belle vitrine vaut vraiment le détour. On y trouve notamment de belles affiches vintage très bien encadrées ou des photos d’art joliment mises en valeur. À deux pas du palais royal, et donc idéalement placée. […]',
+    source: 'Petit Futé',
+    note: 'Avis rédigé par les auteurs professionnels du Petit Futé.',
+    cta: 'Lire l’avis',
+  },
   clients: {
     title: 'Ils nous font confiance',
     intro:

@@ -23,6 +23,8 @@ export interface Content {
   services: { title: string; items: Service[]; cta: string };
   printing: { title: string; paragraphs: string[]; imageAlt: string; cta: string };
   antiques: { title: string; paragraphs: string[]; cta: string };
+  /** Petit Futé "Recommandé 2026" review. The quote is theirs, word for word (French original). */
+  press: { eyebrow: string; quote: string; source: string; note: string; cta: string; quoteLang?: string };
   clients: { title: string; intro: string; readMore: string; more: string };
   contact: {
     title: string;
