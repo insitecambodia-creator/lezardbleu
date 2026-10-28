@@ -10,10 +10,10 @@ const t = getContent(locale).printing;
 
 <section class="section" aria-labelledby="printing-title">
   <div class="wrap split">
-    <div class="split__media">
+    <div class="split__media" data-reveal>
       <Image src={printing} alt={t.imageAlt} widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
     </div>
-    <div class="split__body">
+    <div class="split__body" data-reveal style="--i: 1">
       <span class="rule" aria-hidden="true"></span>
       <h2 id="printing-title">{t.title}</h2>
       {t.paragraphs.map((p) => <p>{p}</p>)}

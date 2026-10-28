@@ -16,7 +16,7 @@ const photo = Object.entries(photos).sort(([a], [b]) => a.localeCompare(b))[0]?.
 
 <section class="section section--warm" aria-labelledby="antiques-title">
   <div class:list={['wrap', 'split', { 'split--single': !photo }]}>
-    <div class="split__body">
+    <div class="split__body" data-reveal>
       <span class="rule" aria-hidden="true"></span>
       <h2 id="antiques-title">{t.title}</h2>
       {t.paragraphs.map((p) => <p>{p}</p>)}
@@ -24,7 +24,7 @@ const photo = Object.entries(photos).sort(([a], [b]) => a.localeCompare(b))[0]?.
     </div>
     {
       photo && (
-        <div class="split__media">
+        <div class="split__media" data-reveal style="--i: 1">
           <Image src={photo} alt="" widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
         </div>
       )

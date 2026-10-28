@@ -91,5 +91,8 @@ Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test web
   brief's `#7A7A7A`: the latter fails WCAG AA contrast (4.3:1). Buttons are orange with white text
   (the owner's preference), which is only 2.8:1 contrast, below WCAG AA. If accessibility matters
   more later, darken the button orange or switch the text back to `var(--blue)` (5.5:1) in `.btn`.
+- Motion is subtle and one-off: sections fade and rise as they scroll into view (add `data-reveal`
+  to an element, and `style="--i: N"` to stagger siblings), and the hero photo settles in on load.
+  It switches off for visitors who prefer reduced motion and for anyone without JavaScript.
 - No client-side framework. JavaScript is only the form handler and Google Tag Manager, which
   loads after the page has finished loading.

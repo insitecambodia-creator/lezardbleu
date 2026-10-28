@@ -8,21 +8,21 @@ const t = getContent(locale);
 
 <section class="section section--warm" aria-labelledby="services-title">
   <div class="wrap">
-    <div class="services__head">
+    <div class="services__head" data-reveal>
       <span class="rule" aria-hidden="true"></span>
       <h2 class="h2-small" id="services-title">{t.services.title}</h2>
     </div>
     <ul class="cards">
       {
-        t.services.items.map((item) => (
-          <li class="card">
+        t.services.items.map((item, i) => (
+          <li class="card" data-reveal style={`--i: ${i + 1}`}>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </li>
         ))
       }
     </ul>
-    <div class="services__cta">
+    <div class="services__cta" data-reveal>
       <a class="btn" href={site.telegram} target="_blank" rel="noopener">
         {t.services.cta}<span class="visually-hidden"> ({t.ui.opensNewTab})</span>
       </a>
