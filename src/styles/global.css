@@ -508,10 +508,17 @@ h3 {
   font-size: 0.9rem;
   color: #c9d1da;
 }
-.press__source {
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+/* The logo keeps its own colours, so it sits on a small white badge rather than straight on navy */
+.press__logo {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  background: #fff;
+  border-radius: 4px;
+}
+.press__logo img {
+  display: block;
+  width: 7.5rem;
+  height: auto;
 }
 .press__link {
   margin-top: 0.5rem;
