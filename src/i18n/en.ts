@@ -20,15 +20,16 @@ export const en: Content = {
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
-    title: ['Custom Framing', 'Art Conservation', 'Restoration'],
+    title: ['Custom Framing', '& Fine Art Printing', 'in Phnom Penh'],
     cta: 'Contact us today',
     imageAlt: 'A framed abstract painting in blue and white hanging in a bright living room',
   },
   atelier: {
     title: 'The Atelier',
     paragraphs: [
-      'At Le Lezard Bleu, every piece that comes through our doors (a family photograph, a fragile watercolor, a painting passed down through generations) is treated with the same care we’d want for our own. Located in the heart of Phnom Penh, our atelier combines traditional framing craftsmanship with the technical precision of art conservation and restoration.',
-      'Whether you’re framing a new piece or bringing an old one back to life, our work is guided by one principle: respect for the material, and respect for what it means to you.',
+      'At **Le Lézard Bleu**, we believe every artwork, photograph and treasured memory deserves a beautiful presentation.',
+      'Located in the heart of Phnom Penh on Street 240, our framing workshop specialises in custom-made frames for paintings, photographs, prints and personal collections. We also offer fine art printing on quality papers, bringing images to life with attention to detail and craftsmanship.',
+      'Discover our boutique, where carefully selected Cambodian artworks, traditional objects and decorative pieces celebrate the country’s artistic heritage.',
     ],
     cta: 'Chat on Telegram',
   },

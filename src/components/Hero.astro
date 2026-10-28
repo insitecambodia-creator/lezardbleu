@@ -23,7 +23,7 @@ const t = getContent(locale).hero;
   <div class="wrap hero__copy">
     <p class="eyebrow">{t.eyebrow}</p>
     <h1 id="hero-title">
-      {t.title.map((line) => <span class="h1-line">{line}</span>)}
+      {t.title.map((line, i) => <>{i > 0 && ' '}<span class="h1-line">{line}</span></>)}
     </h1>
     <div><a class="btn" href="#form">{t.cta}</a></div>
   </div>
