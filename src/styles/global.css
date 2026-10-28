@@ -181,7 +181,7 @@ h3 {
   gap: 0.6rem;
   padding: 0.95rem 1.7rem;
   background: var(--orange);
-  color: var(--blue);
+  color: #fff;
   font: inherit;
   font-weight: 600;
   line-height: 1.2;

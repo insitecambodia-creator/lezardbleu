@@ -88,7 +88,8 @@ Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test web
 ## Design notes
 
 - Colours and type follow `docs/company-and-website-brief.md`. Body text uses `#6E6E6E`, not the
-  brief's `#7A7A7A`: the latter fails WCAG AA contrast (4.3:1). Buttons are orange with blue text
-  because white on `#FA7403` is only 2.8:1.
+  brief's `#7A7A7A`: the latter fails WCAG AA contrast (4.3:1). Buttons are orange with white text
+  (the owner's preference), which is only 2.8:1 contrast, below WCAG AA. If accessibility matters
+  more later, darken the button orange or switch the text back to `var(--blue)` (5.5:1) in `.btn`.
 - No client-side framework. JavaScript is only the form handler and Google Tag Manager, which
   loads after the page has finished loading.
