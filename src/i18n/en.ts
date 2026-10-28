@@ -69,6 +69,7 @@ export const en: Content = {
     title: 'Trusted by many',
     intro:
       'Every piece tells a story, and so does every restoration. Here is a look at some of the work leaving our atelier, from fragile pieces brought back to life to frames made for one artwork and no other.',
+    readMore: 'Read More',
     more: '…and many others',
   },
   contact: {
