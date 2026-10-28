@@ -4,9 +4,9 @@ export const en: Content = {
   published: true,
   langName: 'English',
   meta: {
-    title: 'Le Lezard Bleu – Custom Framing & Fine Art Printing, Phnom Penh',
+    title: 'Custom Framing & Fine Art Printing in Phnom Penh | Le Lézard Bleu',
     description:
-      'Custom framing, art conservation, restoration and fine art printing in Phnom Penh, plus Khmer artifacts and antiques at our shop on Street 240.',
+      'Custom picture framing, fine art printing and Cambodian art in Phnom Penh. Discover Le Lézard Bleu’s framing workshop and boutique on Street 240.',
     ogAlt: 'Le Lezard Bleu – custom framing in Phnom Penh',
   },
   ui: {

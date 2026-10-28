@@ -5,9 +5,9 @@ export const fr: Content = {
   published: true,
   langName: 'Français',
   meta: {
-    title: 'Le Lezard Bleu – Encadrement sur mesure et impression d’art, Phnom Penh',
+    title: 'Encadrement sur mesure et impression d’art à Phnom Penh | Le Lézard Bleu',
     description:
-      'Encadrement sur mesure, conservation, restauration et impression d’art à Phnom Penh, ainsi que des objets et antiquités khmers dans notre boutique de la rue 240.',
+      'Encadrement sur mesure, impression d’art et art cambodgien à Phnom Penh. Découvrez l’atelier d’encadrement et la boutique du Lézard Bleu, rue 240.',
     ogAlt: 'Le Lezard Bleu – encadrement sur mesure à Phnom Penh',
   },
   ui: {
