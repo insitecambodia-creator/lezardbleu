@@ -174,7 +174,9 @@ h3 {
   margin-bottom: 1.25rem;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons ----------
+   Two types: .btn (orange, white text) and .btn.btn--white (white, blue text and border).
+   Both turn blue with white text on hover. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -196,12 +198,14 @@ h3 {
   border-color: var(--blue);
   color: #fff;
 }
-.btn--ghost {
-  background: transparent;
+.btn--white {
+  background: #fff;
   border-color: var(--blue);
+  color: var(--blue);
 }
-.btn--ghost:hover {
+.btn--white:hover {
   background: var(--blue);
+  border-color: var(--blue);
   color: #fff;
 }
 .btn[disabled] {
