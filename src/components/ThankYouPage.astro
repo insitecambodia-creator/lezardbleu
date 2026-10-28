@@ -3,38 +3,28 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import type { Locale } from '../config';
 import { getContent, localePath } from '../i18n';
+import photo from '../assets/images/storefront-2026-2.jpg';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale);
 const th = t.thanks;
 
-// Optional background photo: save the storefront photo as src/assets/images/thank-you.webp (or .jpg/.png).
-// Until it exists the page uses the brand navy.
-const photos = import.meta.glob<ImageMetadata>('../assets/images/thank-you.{webp,jpg,jpeg,png}', {
-  eager: true,
-  import: 'default',
-});
-const photo = Object.values(photos)[0];
 
 const teaser = th.teaser.split('**');
 ---
 
 <Layout locale={locale} page="thank-you/" title={th.metaTitle} description={th.metaTitle} noindex>
   <main id="content" class="thanks" data-template={th.titleNamed}>
-    {
-      photo && (
-        <Image
-          class="thanks__bg"
-          src={photo}
-          alt=""
-          widths={[800, 1280, 1920]}
-          sizes="100vw"
-          loading="eager"
-          fetchpriority="high"
-          format="webp"
-        />
-      )
-    }
+    <Image
+      class="thanks__bg"
+      src={photo}
+      alt=""
+      widths={[800, 1280, 1579]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+    />
     <div class="thanks__shade" aria-hidden="true"></div>
     <div class="thanks__inner">
       <h1 class="thanks__title" id="thanks-title">{th.title}</h1>
