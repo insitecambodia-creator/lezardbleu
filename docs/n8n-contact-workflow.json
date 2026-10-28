@@ -1,0 +1,202 @@
+{
+  "name": "Le Lezard Bleu – website enquiries",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lezard-bleu-contact",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Contact form webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "date",
+              "value": "={{ DateTime.fromISO($json.body.submittedAt).setZone('Asia/Phnom_Penh').toFormat('yyyy-MM-dd HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "fname",
+              "value": "={{ $json.body.firstName }}",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "lname",
+              "value": "={{ $json.body.lastName }}",
+              "type": "string"
+            },
+            {
+              "id": "a4",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "a5",
+              "name": "phone",
+              "value": "={{ $json.body.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "a6",
+              "name": "type",
+              "value": "={{ ($json.body.interests || []).map(i => ({framing:'Framing',printing:'Printing',restoration:'Restoration',antiques:'Artifacts & antiques'}[i] || i)).join(', ') }}",
+              "type": "string"
+            },
+            {
+              "id": "a7",
+              "name": "message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "a8",
+              "name": "language",
+              "value": "={{ $json.body.locale }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Format enquiry",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "13lqYclFsnzxVTKsU8BxHlr4WdbyrN9jZPpq6t0tcj9c",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SiteForm",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $json.date }}",
+            "Fname": "={{ $json.fname }}",
+            "Lname": "={{ $json.lname }}",
+            "Email": "={{ $json.email }}",
+            "Telephone": "={{ $json.phone }}",
+            "Type": "={{ $json.type }}",
+            "Message": "={{ $json.message }}",
+            "Language": "={{ $json.language }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Save to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"ok\": true }",
+        "options": {}
+      },
+      "name": "Reply OK to website",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_YOUR_TELEGRAM_CHAT_ID",
+        "text": "=New enquiry – Le Lezard Bleu\n\n{{ $('Format enquiry').item.json.fname }} {{ $('Format enquiry').item.json.lname }}\n{{ $('Format enquiry').item.json.type || '(no topic ticked)' }}\nEmail: {{ $('Format enquiry').item.json.email }}\nPhone / Telegram: {{ $('Format enquiry').item.json.phone || '-' }}\nLanguage: {{ $('Format enquiry').item.json.language }}\n\n{{ $('Format enquiry').item.json.message || '(no message)' }}",
+        "additionalFields": {}
+      },
+      "name": "Notify on Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "Contact form webhook": {
+      "main": [
+        [
+          {
+            "node": "Format enquiry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format enquiry": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Reply OK to website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply OK to website": {
+      "main": [
+        [
+          {
+            "node": "Notify on Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
