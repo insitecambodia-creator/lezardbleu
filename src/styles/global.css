@@ -127,7 +127,7 @@ a {
 }
 
 h1 {
-  font-size: clamp(2.6rem, 1.1rem + 6vw, 4.6em);
+  font-size: clamp(2.2rem, 1.1rem + 6vw, 4.6em);
   letter-spacing: -0.01em;
   line-height: 1.05;
 }
@@ -319,6 +319,22 @@ h3 {
 }
 .hero h1 {
   margin-block: 1rem 2.25rem;
+  max-width: none;
+}
+/* "Encadrement sur mesure" is much longer than "Custom Framing": keep it clear of the painting */
+@media (min-width: 48rem) {
+  :lang(fr) .hero h1 {
+    font-size: clamp(2.2rem, 1.1rem + 6vw, min(4.6em, 4.2vw));
+  }
+}
+/* One line of the hero H1 per block, so the three lines stay distinct when one has to wrap */
+.h1-line {
+  display: block;
+}
+@media (min-width: 48rem) {
+  .h1-line {
+    white-space: nowrap;
+  }
 }
 @media (max-width: 48rem) {
   .hero {
