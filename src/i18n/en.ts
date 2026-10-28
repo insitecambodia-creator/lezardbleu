@@ -65,6 +65,14 @@ export const en: Content = {
     ],
     cta: 'Enquire about an item',
   },
+  press: {
+    eyebrow: 'Recommended · Petit Futé 2026',
+    quote:
+      'A very beautiful shop of traditional and contemporary art, with plenty of original creations, sculptures, paintings, photographs… This shop with its lovely window display is really worth the detour. You will find, among other things, beautiful vintage posters very well framed, and art photographs nicely showcased. Just steps from the Royal Palace, and therefore ideally located. […]',
+    source: 'Petit Futé',
+    note: 'Review written by Petit Futé’s professional authors. Translated from the French original.',
+    cta: 'Read the review',
+  },
   clients: {
     title: 'Trusted by many',
     intro:

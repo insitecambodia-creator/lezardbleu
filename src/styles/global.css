@@ -454,6 +454,65 @@ h3 {
   }
 }
 
+/* ---------- Press quote (Petit Futé) ---------- */
+.press {
+  background: var(--blue);
+  color: #fff;
+}
+.press__inner {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+  max-width: 52rem;
+  text-align: center;
+}
+.press .h2-small {
+  color: #fff;
+  padding-top: 1.25rem;
+  border-top: 3px solid var(--orange);
+}
+.press__figure {
+  display: grid;
+  gap: 1.75rem;
+  margin: 0;
+}
+.press blockquote {
+  margin: 0;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.65rem);
+  line-height: 1.55;
+  font-weight: 400;
+  color: #fff;
+}
+.press blockquote p::before {
+  content: '“';
+  display: block;
+  color: var(--orange);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.6;
+  margin-bottom: 1rem;
+}
+.press figcaption {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  font-size: 0.9rem;
+  color: #c9d1da;
+}
+.press__source {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.press__link {
+  margin-top: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+}
+:lang(km) .press .h2-small {
+  font-size: 1em;
+}
+
 /* ---------- Clients ---------- */
 .clients__head {
   display: grid;

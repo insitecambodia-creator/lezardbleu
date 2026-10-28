@@ -1,0 +1,32 @@
+---
+import { site, type Locale } from '../config';
+import { getContent } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+const p = t.press;
+// The French text is Petit Futé's own wording; the other languages are translations of it.
+const quoteLang = locale === 'fr' ? 'fr' : undefined;
+---
+
+<section class="section press" aria-labelledby="press-title">
+  <div class="wrap press__inner" data-reveal>
+    <h2 class="h2-small" id="press-title">{p.eyebrow}</h2>
+    <figure class="press__figure">
+      <blockquote lang={quoteLang}>
+        <p>{p.quote}</p>
+      </blockquote>
+      <figcaption>
+        <span class="press__source">{p.source}</span>
+        <span class="press__note">{p.note}</span>
+        {
+          site.petitFuteUrl && (
+            <a class="press__link" href={site.petitFuteUrl} target="_blank" rel="noopener">
+              {p.cta}<span class="visually-hidden"> ({t.ui.opensNewTab})</span>
+            </a>
+          )
+        }
+      </figcaption>
+    </figure>
+  </div>
+</section>

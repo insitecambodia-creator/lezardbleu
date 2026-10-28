@@ -4,6 +4,8 @@ export const site = {
   url: 'https://www.lezard-bleu.com',
   phone: { display: '+855 17 935 968', href: 'tel:+85517935968' },
   telegram: 'https://t.me/lezard_bleu',
+  /** URL of the Petit Futé listing. Not supplied yet: the "Read the review" link is hidden until set. */
+  petitFuteUrl: '',
   // Reconfirm before launch (see CONTENT-TODO.md).
   address: {
     street: '#61, Oknha Chhun (St 240)',
