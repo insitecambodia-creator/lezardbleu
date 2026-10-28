@@ -16,6 +16,8 @@ export const fr: Content = {
     call: 'Appeler',
     telegram: 'Écrire sur Telegram',
     opensNewTab: 's’ouvre dans un nouvel onglet',
+    gallery: 'Galerie',
+    home: 'Accueil',
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
@@ -65,6 +67,22 @@ export const fr: Content = {
       'Contactez-nous pour vous renseigner sur une pièce en particulier ou pour en savoir plus sur la sélection actuelle.',
     ],
     cta: 'Se renseigner sur une pièce',
+    galleryCta: 'Voir la galerie',
+    imageAlt: 'Une statue en bronze à plusieurs bras, dans la boutique',
+  },
+  gallery: {
+    metaTitle: 'Galerie – Le Lezard Bleu, Phnom Penh',
+    metaDescription:
+      'Un aperçu du Lezard Bleu, rue 240 à Phnom Penh : œuvres encadrées, moulures de cadres, objets et antiquités khmers.',
+    title: 'Galerie',
+    intro:
+      'Un aperçu de la boutique de la rue 240 : œuvres encadrées, moulures de cadres, objets et antiquités. Demandez-nous des précisions sur toute pièce qui vous plaît.',
+    enquire: 'Se renseigner sur une pièce',
+    openPhoto: 'Agrandir',
+    close: 'Fermer',
+    previous: 'Photo précédente',
+    next: 'Photo suivante',
+    counter: 'Photo {n} sur {total}',
   },
   press: {
     eyebrow: 'Recommandé · Petit Futé 2026',

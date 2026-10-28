@@ -1,33 +1,33 @@
 ---
 import { Image } from 'astro:assets';
 import type { Locale } from '../config';
-import { getContent } from '../i18n';
+import { getContent, localePath } from '../i18n';
+import photo from '../assets/gallery/le-lezard-bleu3.webp';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale).antiques;
-
-// Optional photo: drop an image into src/assets/antiques/ and it appears here.
-const photos = import.meta.glob<ImageMetadata>('../assets/antiques/*.{webp,jpg,jpeg,png}', {
-  eager: true,
-  import: 'default',
-});
-const photo = Object.entries(photos).sort(([a], [b]) => a.localeCompare(b))[0]?.[1];
 ---
 
 <section class="section section--warm" aria-labelledby="antiques-title">
-  <div class:list={['wrap', 'split', { 'split--single': !photo }]}>
+  <div class="wrap split">
     <div class="split__body" data-reveal>
       <span class="rule" aria-hidden="true"></span>
       <h2 id="antiques-title">{t.title}</h2>
       {t.paragraphs.map((p) => <p>{p}</p>)}
-      <a class="btn" href="#form">{t.cta}</a>
+      <div class="split__actions">
+        <a class="btn" href="#form">{t.cta}</a>
+        <a class="btn btn--white" href={localePath(locale, 'gallery/')}>{t.galleryCta}</a>
+      </div>
     </div>
-    {
-      photo && (
-        <div class="split__media" data-reveal style="--i: 1">
-          <Image src={photo} alt="" widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
-        </div>
-      )
-    }
+    <div class="split__media split__media--photo" data-reveal style="--i: 1">
+      <Image
+        src={photo}
+        alt={t.imageAlt}
+        widths={[480, 720, 1080]}
+        sizes="(max-width: 48rem) 100vw, 50vw"
+        format="webp"
+        loading="lazy"
+      />
+    </div>
   </div>
 </section>

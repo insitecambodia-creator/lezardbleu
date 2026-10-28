@@ -2,7 +2,7 @@
 import { site, type Locale } from '../config';
 import { getContent, publishedLocales, localePath } from '../i18n';
 
-const { locale } = Astro.props as { locale: Locale };
+const { locale, page = '' } = Astro.props as { locale: Locale; page?: string };
 const t = getContent(locale);
 ---
 
@@ -10,6 +10,11 @@ const t = getContent(locale);
   <div class="wrap site-header__inner">
     <a class="wordmark" href={localePath(locale)}>{site.name}</a>
     <div class="site-header__tools">
+      <a
+        class="header-link"
+        href={localePath(locale, 'gallery/')}
+        aria-current={page === 'gallery/' ? 'page' : undefined}>{t.ui.gallery}</a
+      >
       {
         publishedLocales.length > 1 && (
           <nav aria-label={t.ui.language}>
@@ -17,7 +22,7 @@ const t = getContent(locale);
               {publishedLocales.map((l) => (
                 <li>
                   <a
-                    href={localePath(l)}
+                    href={localePath(l, page)}
                     hreflang={l}
                     lang={l}
                     aria-current={l === locale ? 'true' : undefined}

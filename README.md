@@ -24,6 +24,7 @@ Preview the Khmer layout before it is translated: `PUBLIC_PREVIEW_KM=1 npm run d
 src/config.ts            phone, Telegram, address, GTM id: facts shared by all languages
 src/i18n/en|fr|km.ts     ALL page text, one file per language
 src/data/clients.ts      client logos list (files in src/assets/clients/)
+src/data/gallery.ts      gallery photos and their descriptions (files in src/assets/gallery/)
 src/components/          one component per page section
 src/styles/global.css    design tokens (colours, type) and all styles
 src/assets/              images (optimised at build time)
@@ -39,7 +40,12 @@ reference/               snapshot of the old WordPress page and unused originals
   `src/components/Header.astro` (the header currently uses a text wordmark).
 - **Client logos**: each entry in `src/data/clients.ts` shows the image with the same name in
   `src/assets/clients/` (e.g. `gallerist.png`). Entries without a file are skipped.
-- **Antiques photo**: put one image in `src/assets/antiques/` and it appears beside the section text.
+- **Gallery photos**: put the image in `src/assets/gallery/` and add a line to `src/data/gallery.ts`
+  (file name without extension, plus a short factual description in English and French). The list order is
+  the display order. A photo that is in the folder but not listed still appears, at the end, without a
+  description (the build prints a warning). Pages: `/gallery/` and `/fr/gallery/`.
+- **Antiques section photo**: it is `src/assets/gallery/le-lezard-bleu3.webp`; change the import in
+  `src/components/Antiques.astro` to use another.
 - **Khmer**: fill in `src/i18n/km.ts` (copy the shape of `en.ts`; missing keys fall back to English),
   have it reviewed by a native speaker, then set `published: true`.
 

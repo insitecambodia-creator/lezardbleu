@@ -12,6 +12,9 @@ Internal checklist, not published on the site.
 - [ ] Opening hours, public email and Google Maps pin were not supplied, so they are not shown.
 - [ ] Claims carried over unchanged from the live site: "conservation-grade materials",
       "archival pigment inks". Keep only what the business can substantiate (brief §4).
+- [ ] **Gallery** (`src/data/gallery.ts`): descriptions are factual and make no claim about age, origin or
+      value; check them, and the French. Photos #8 (blurred carved object) and #15 (reflections) are the
+      weakest and sit last: remove them if you prefer. #14 has a person blurred in the background.
 - [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
 - [ ] Original logo (vector) for the header.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is

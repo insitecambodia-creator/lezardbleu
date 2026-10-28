@@ -15,6 +15,8 @@ export const en: Content = {
     call: 'Call',
     telegram: 'Chat on Telegram',
     opensNewTab: 'opens in a new tab',
+    gallery: 'Gallery',
+    home: 'Home',
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
@@ -64,6 +66,22 @@ export const en: Content = {
       'Contact us to ask about a particular item or to find out more about the current selection.',
     ],
     cta: 'Enquire about an item',
+    galleryCta: 'View the gallery',
+    imageAlt: 'A bronze figure with several arms, standing in the shop',
+  },
+  gallery: {
+    metaTitle: 'Gallery – Le Lezard Bleu, Phnom Penh',
+    metaDescription:
+      'A look inside Le Lezard Bleu on Street 240, Phnom Penh: framed works, frame mouldings, Khmer artifacts and antiques.',
+    title: 'Gallery',
+    intro:
+      'A look inside the shop on Street 240: framed works, frame mouldings, artifacts and antiques. Ask us about any piece you see.',
+    enquire: 'Enquire about an item',
+    openPhoto: 'View larger',
+    close: 'Close',
+    previous: 'Previous photo',
+    next: 'Next photo',
+    counter: 'Photo {n} of {total}',
   },
   press: {
     eyebrow: 'Recommended · Petit Futé 2026',
