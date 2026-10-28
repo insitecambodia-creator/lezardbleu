@@ -21,15 +21,16 @@ export const fr: Content = {
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
-    title: ['Encadrement sur mesure', 'Conservation d’art', 'Restauration'],
+    title: ['Encadrement sur mesure', 'et impression d’art', 'à Phnom Penh'],
     cta: 'Contactez-nous',
     imageAlt: 'Une peinture abstraite encadrée, bleue et blanche, accrochée dans un salon lumineux',
   },
   atelier: {
     title: 'L’atelier',
     paragraphs: [
-      'Au Lezard Bleu, chaque œuvre qui franchit notre porte (une photo de famille, une aquarelle fragile, un tableau transmis de génération en génération) est traitée avec le soin que nous souhaiterions pour la nôtre. Au cœur de Phnom Penh, notre atelier allie le savoir-faire traditionnel de l’encadrement à la précision technique de la conservation et de la restauration d’art.',
-      'Que vous encadriez une pièce neuve ou que vous redonniez vie à une pièce ancienne, notre travail obéit à un principe : le respect de la matière, et le respect de ce qu’elle représente pour vous.',
+      'Chez **Le Lézard Bleu**, nous croyons que chaque œuvre d’art, chaque photographie et chaque souvenir précieux mérite une belle présentation.',
+      'Situé au cœur de Phnom Penh, rue 240, notre atelier d’encadrement est spécialisé dans les cadres sur mesure pour peintures, photographies, estampes et collections personnelles. Nous proposons également l’impression d’art sur des papiers de qualité, pour donner vie aux images avec soin et savoir-faire.',
+      'Découvrez notre boutique, où des œuvres d’art cambodgiennes soigneusement sélectionnées, des objets traditionnels et des pièces décoratives célèbrent le patrimoine artistique du pays.',
     ],
     cta: 'Écrire sur Telegram',
   },

@@ -13,7 +13,11 @@ const t = getContent(locale);
       <h2 class="h2-small" id="atelier-title">{t.atelier.title}</h2>
     </div>
     <div class="atelier__body" data-reveal style="--i: 1">
-      {t.atelier.paragraphs.map((p) => <p>{p}</p>)}
+      {
+        t.atelier.paragraphs.map((p) => (
+          <p>{p.split('**').map((part, i) => (i % 2 ? <strong>{part}</strong> : part))}</p>
+        ))
+      }
       <a class="btn btn--white" href={site.telegram} target="_blank" rel="noopener">
         {t.atelier.cta}<span class="visually-hidden"> ({t.ui.opensNewTab})</span>
       </a>

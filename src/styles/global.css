@@ -327,10 +327,15 @@ h3 {
   margin-block: 1rem 2.25rem;
   max-width: none;
 }
-/* "Encadrement sur mesure" is much longer than "Custom Framing": keep it clear of the painting */
+/* The hero H1 is a full sentence (three lines), longer than the brief's 4.6em reference allows next to
+   the photo: cap it by viewport width so the longest line stays clear of the painting. French has the
+   longer first line ("Encadrement sur mesure"), so it gets a slightly smaller cap. */
 @media (min-width: 48rem) {
+  .hero h1 {
+    font-size: clamp(2.2rem, 1.1rem + 6vw, min(4.6em, 4.8vw));
+  }
   :lang(fr) .hero h1 {
-    font-size: clamp(2.2rem, 1.1rem + 6vw, min(4.6em, 4.2vw));
+    font-size: clamp(2.2rem, 1.1rem + 6vw, min(4.6em, 4vw));
   }
 }
 /* One line of the hero H1 per block, so the three lines stay distinct when one has to wrap */
@@ -383,6 +388,10 @@ h3 {
   gap: 2.5rem 5rem;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   align-items: start;
+}
+.atelier__body strong {
+  color: var(--blue);
+  font-weight: 600;
 }
 .atelier__body {
   display: grid;
