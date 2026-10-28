@@ -37,8 +37,8 @@ reference/               snapshot of the old WordPress page and unused originals
 
 - **Logo**: drop the file in `src/assets/brand/` and ask Claude Code to wire it into
   `src/components/Header.astro` (the header currently uses a text wordmark).
-- **The Gallerist logo**: save it as `src/assets/clients/gallerist.png` (or `.webp`). It appears
-  automatically; entries without a file are skipped.
+- **Client logos**: each entry in `src/data/clients.ts` shows the image with the same name in
+  `src/assets/clients/` (e.g. `gallerist.png`). Entries without a file are skipped.
 - **Antiques photo**: put one image in `src/assets/antiques/` and it appears beside the section text.
 - **Khmer**: fill in `src/i18n/km.ts` (copy the shape of `en.ts`; missing keys fall back to English),
   have it reviewed by a native speaker, then set `published: true`.

@@ -13,7 +13,7 @@ Internal checklist, not published on the site.
 - [ ] Claims carried over unchanged from the live site: "conservation-grade materials",
       "archival pigment inks". Keep only what the business can substantiate (brief §4).
 - [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
-- [ ] Original logo (vector) and the Gallerist logo.
+- [ ] Original logo (vector) for the header.
 
 ## Technical
 
