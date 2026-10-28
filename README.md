@@ -80,6 +80,11 @@ matches. The payload n8n receives:
 `interests` values are always the English keys `framing`, `printing`, `restoration`, `antiques`;
 `locale` tells you which language the visitor used.
 
+**Ready-made n8n workflow**: `docs/n8n-contact-workflow.json` (Webhook → format fields → append a row to the
+"SiteForm" Google Sheet → reply OK to the website → Telegram notification). Import it in n8n (Workflows →
+Import from file), pick your Google Sheets, Telegram and Header Auth credentials on the nodes, add `Message`
+and `Language` columns to the sheet, then activate it and use its **Production** webhook URL.
+
 Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test webhook, run `npm run preview`.
 
 ## Deploying on Cloudflare
