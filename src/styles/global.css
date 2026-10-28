@@ -9,6 +9,8 @@
   /* Brand (docs/company-and-website-brief.md §7) */
   --blue: #10273d;
   --orange: #fa7403;
+  /* Orange for small text on white: the brand orange is 2.8:1 there, this is 4.6:1 */
+  --orange-text: #bd5700;
   /* Brand grey was #7a7a7a (4.3:1 on white, fails WCAG AA). This is the lightest grey that
      passes AA on white (5.1:1) and on --bg-warm (4.7:1). Do not lighten it. */
   --text: #6e6e6e;
@@ -456,35 +458,96 @@ h3 {
 .clients__head {
   display: grid;
   gap: 1.25rem;
-  max-width: 44rem;
-  margin-bottom: 3rem;
+  justify-items: center;
+  max-width: 40rem;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+  font-size: 1.125rem;
 }
 .logos {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 1.75rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.logos a {
-  display: block;
-  border: 1px solid var(--line);
-  transition: border-color 0.15s, box-shadow 0.15s;
+.client-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+  min-height: 19rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  background: #fff;
+  border: 4px solid var(--blue);
+  border-radius: 6px;
+  box-shadow: 6px 8px 14px rgb(16 39 61 / 0.25);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
-.logos a:hover {
-  border-color: var(--blue);
-  box-shadow: 0 6px 20px rgb(16 39 61 / 0.1);
-}
-.logos img {
-  width: 100%;
+.client-card img {
+  width: 82%;
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
+  filter: grayscale(1);
+  transition: filter 0.25s;
+}
+.client-card__name {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.client-card__more {
+  color: var(--orange-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.client-card:hover,
+.client-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 8px 12px 20px rgb(16 39 61 / 0.3);
+}
+.client-card:hover img,
+.client-card:focus-visible img {
+  filter: none;
+}
+.client-card:hover .client-card__more {
+  text-decoration: underline;
 }
 .clients__more {
-  margin-top: 2rem;
-  font-style: italic;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+/* Phones: two cards per row (five stacked tall cards make a very long column) */
+@media (max-width: 40rem) {
+  .logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+  }
+  .logos li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 0.5rem);
+  }
+  .client-card {
+    min-height: 14.5rem;
+    padding: 1rem 0.5rem;
+    gap: 0.7rem;
+    border-width: 3px;
+  }
+  .client-card__name {
+    font-size: 0.9rem;
+  }
+  .client-card__more {
+    font-size: 0.8rem;
+  }
 }
 
 /* ---------- Contact form ---------- */

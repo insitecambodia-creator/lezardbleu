@@ -70,6 +70,7 @@ export const fr: Content = {
     title: 'Ils nous font confiance',
     intro:
       'Chaque pièce raconte une histoire, et chaque restauration aussi. Voici un aperçu de travaux sortis de notre atelier, des pièces fragiles ramenées à la vie aux cadres conçus pour une œuvre et une seule.',
+    readMore: 'En savoir plus',
     more: '…et bien d’autres',
   },
   contact: {

@@ -23,7 +23,7 @@ export interface Content {
   services: { title: string; items: Service[]; cta: string };
   printing: { title: string; paragraphs: string[]; imageAlt: string; cta: string };
   antiques: { title: string; paragraphs: string[]; cta: string };
-  clients: { title: string; intro: string; more: string };
+  clients: { title: string; intro: string; readMore: string; more: string };
   contact: {
     title: string;
     intro: string;
