@@ -19,7 +19,7 @@ export const fr: Content = {
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
-    title: 'Encadrement sur mesure',
+    title: ['Encadrement sur mesure', 'Conservation d’art', 'Restauration'],
     cta: 'Contactez-nous',
     imageAlt: 'Une peinture abstraite encadrée, bleue et blanche, accrochée dans un salon lumineux',
   },

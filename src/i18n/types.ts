@@ -17,7 +17,8 @@ export interface Content {
     telegram: string;
     opensNewTab: string;
   };
-  hero: { eyebrow: string; title: string; cta: string; imageAlt: string };
+  /** Hero H1, one entry per line */
+  hero: { eyebrow: string; title: string[]; cta: string; imageAlt: string };
   atelier: { title: string; paragraphs: string[]; cta: string };
   services: { title: string; items: Service[]; cta: string };
   printing: { title: string; paragraphs: string[]; imageAlt: string; cta: string };

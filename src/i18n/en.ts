@@ -18,7 +18,7 @@ export const en: Content = {
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
-    title: 'Custom Framing',
+    title: ['Custom Framing', 'Art Conservation', 'Restoration'],
     cta: 'Contact us today',
     imageAlt: 'A framed abstract painting in blue and white hanging in a bright living room',
   },
