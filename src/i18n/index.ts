@@ -30,6 +30,7 @@ export function getContent(locale: Locale): Content {
 
 export const publishedLocales = locales.filter((l) => all[l].published);
 
-export function localePath(locale: Locale): string {
-  return locale === 'en' ? '/' : `/${locale}/`;
+/** Path of a page in a language, e.g. localePath('fr', 'gallery/') -> /fr/gallery/ */
+export function localePath(locale: Locale, page = ''): string {
+  return (locale === 'en' ? '/' : `/${locale}/`) + page;
 }

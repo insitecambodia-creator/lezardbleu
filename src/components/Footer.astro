@@ -1,6 +1,6 @@
 ---
 import { site, type Locale } from '../config';
-import { getContent } from '../i18n';
+import { getContent, localePath } from '../i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale);
@@ -16,6 +16,7 @@ const t = getContent(locale);
       </address>
     </div>
     <div>
+      <a href={localePath(locale, 'gallery/')}>{t.ui.gallery}</a><br />
       <a href={site.phone.href}>{site.phone.display}</a><br />
       <a href={site.telegram} target="_blank" rel="noopener">Telegram</a>
     </div>

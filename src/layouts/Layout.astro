@@ -7,13 +7,19 @@ import hero from '../assets/images/hero.webp';
 
 interface Props {
   locale: Locale;
+  /** Path of the page within a language, e.g. 'gallery/' ('' for the home page) */
+  page?: string;
+  title?: string;
+  description?: string;
 }
-const { locale } = Astro.props;
+const { locale, page = '', title, description } = Astro.props;
 const t = getContent(locale);
 
 const abs = (path: string) => new URL(path, site.url).href;
 const canonical = abs(Astro.url.pathname);
 const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
+const metaTitle = title ?? t.meta.title;
+const metaDescription = description ?? t.meta.description;
 const ogLocale = { en: 'en_US', fr: 'fr_FR', km: 'km_KH' }[locale];
 
 const jsonLd = {
@@ -39,16 +45,16 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{t.meta.title}</title>
-    <meta name="description" content={t.meta.description} />
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
     <meta name="theme-color" content="#10273d" />
     <link rel="canonical" href={canonical} />
     {
       publishedLocales.map((l) => (
-        <link rel="alternate" hreflang={l} href={abs(localePath(l))} />
+        <link rel="alternate" hreflang={l} href={abs(localePath(l, page))} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={abs(localePath('en'))} />
+    <link rel="alternate" hreflang="x-default" href={abs(localePath('en', page))} />
     {!t.published && <meta name="robots" content="noindex" />}
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -58,8 +64,8 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:title" content={t.meta.title} />
-    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={abs(og.src)} />
     <meta property="og:image:alt" content={t.meta.ogAlt} />
