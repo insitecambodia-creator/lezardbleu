@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { Locale } from '../config';
+import { getContent } from '../i18n';
+import hero from '../assets/images/hero.webp';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale).hero;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__media">
+    <Image
+      src={hero}
+      alt={t.imageAlt}
+      widths={[640, 960, 1280, 1672]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+    />
+  </div>
+  <div class="wrap hero__copy">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1 id="hero-title">{t.title}</h1>
+    <div><a class="btn" href="#form">{t.cta}</a></div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Atelier from './Atelier.astro';
+import Services from './Services.astro';
+import Printing from './Printing.astro';
+import Antiques from './Antiques.astro';
+import Clients from './Clients.astro';
+import ContactForm from './ContactForm.astro';
+import Footer from './Footer.astro';
+import type { Locale } from '../config';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Layout locale={locale}>
+  <Header locale={locale} />
+  <main id="content">
+    <Hero locale={locale} />
+    <Atelier locale={locale} />
+    <Services locale={locale} />
+    <Printing locale={locale} />
+    <Antiques locale={locale} />
+    <Clients locale={locale} />
+    <ContactForm locale={locale} />
+  </main>
+  <Footer locale={locale} />
+</Layout>

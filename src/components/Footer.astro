@@ -1,0 +1,24 @@
+---
+import { site, type Locale } from '../config';
+import { getContent } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>
+      <span class="wordmark">{site.name}</span>
+      <address>
+        {site.address.street}<br />
+        {site.address.locality}, {site.address.countryName}
+      </address>
+    </div>
+    <div>
+      <a href={site.phone.href}>{site.phone.display}</a><br />
+      <a href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <p>© {new Date().getFullYear()} {site.name}. {t.footer.rights}</p>
+  </div>
+</footer>

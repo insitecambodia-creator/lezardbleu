@@ -1,1 +1,94 @@
-# lezardbleu
+# Le Lezard Bleu
+
+One-page website for Le Lezard Bleu (Phnom Penh), built with [Astro](https://astro.build) and
+deployed to **Cloudflare Workers** (static assets + a small Worker for the contact form).
+
+Languages: English (`/`), French (`/fr/`), Khmer (`/km/`, built but hidden until translated).
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Dev server on http://localhost:4321 (no form backend) |
+| `npm run build` | Build the static site into `dist/` |
+| `npm run preview` | Build, then run site + Worker locally with `wrangler dev` (form works) |
+| `npm run deploy` | Build and deploy to Cloudflare |
+| `npm run check` | Type-check Astro and TypeScript |
+
+Preview the Khmer layout before it is translated: `PUBLIC_PREVIEW_KM=1 npm run dev`.
+
+## Where things live
+
+```
+src/config.ts            phone, Telegram, address, GTM id: facts shared by all languages
+src/i18n/en|fr|km.ts     ALL page text, one file per language
+src/data/clients.ts      client logos list (files in src/assets/clients/)
+src/components/          one component per page section
+src/styles/global.css    design tokens (colours, type) and all styles
+src/assets/              images (optimised at build time)
+worker/index.ts          POST /api/contact -> Turnstile check -> n8n webhook
+wrangler.jsonc           Cloudflare config
+docs/                    company & website brief
+reference/               snapshot of the old WordPress page and unused originals
+```
+
+### Adding things
+
+- **Logo**: drop the file in `src/assets/brand/` and ask Claude Code to wire it into
+  `src/components/Header.astro` (the header currently uses a text wordmark).
+- **The Gallerist logo**: save it as `src/assets/clients/gallerist.png` (or `.webp`). It appears
+  automatically; entries without a file are skipped.
+- **Antiques photo**: put one image in `src/assets/antiques/` and it appears beside the section text.
+- **Khmer**: fill in `src/i18n/km.ts` (copy the shape of `en.ts`; missing keys fall back to English),
+  have it reviewed by a native speaker, then set `published: true`.
+
+## Contact form -> n8n
+
+The browser posts to `/api/contact` on the same domain. The Worker validates the fields,
+checks the honeypot and Cloudflare Turnstile, then forwards JSON to your n8n **Webhook** node
+(method POST). Set these once:
+
+```bash
+npx wrangler secret put N8N_WEBHOOK_URL      # the n8n production webhook URL
+npx wrangler secret put N8N_WEBHOOK_TOKEN    # optional: any random string
+npx wrangler secret put TURNSTILE_SECRET     # from the Cloudflare Turnstile dashboard
+```
+
+Also set the public Turnstile **site key** as the build variable `PUBLIC_TURNSTILE_SITE_KEY`
+(Workers Builds → Settings → Variables, or a local `.env`). Without a site key the widget is
+hidden; without `TURNSTILE_SECRET` the Worker skips verification. Set both before launch.
+
+If you set `N8N_WEBHOOK_TOKEN`, have the n8n workflow check that the `X-Webhook-Token` header
+matches. The payload n8n receives:
+
+```json
+{
+  "firstName": "Sophie", "lastName": "Martin", "email": "sophie@example.com",
+  "phone": "", "interests": ["framing", "antiques"],
+  "message": "…", "locale": "fr",
+  "pageUrl": "https://www.lezard-bleu.com/fr/", "submittedAt": "2026-10-28T02:13:01.591Z"
+}
+```
+
+`interests` values are always the English keys `framing`, `printing`, `restoration`, `antiques`;
+`locale` tells you which language the visitor used.
+
+Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test webhook, run `npm run preview`.
+
+## Deploying on Cloudflare
+
+1. Cloudflare dashboard → Workers & Pages → Create → connect this GitHub repo (Workers Builds).
+2. Build command `npm run build`, deploy command `npx wrangler deploy`.
+3. Set the secrets and build variable above. Set `PUBLIC_GTM_ID` only if it differs from the default.
+4. Add the custom domain `www.lezard-bleu.com` to the Worker. **Keep the old WordPress site live
+   until the checks in `CONTENT-TODO.md` pass**, and keep a backup for rollback (re-point DNS).
+   Preserve existing email DNS records (MX, SPF, DKIM).
+
+## Design notes
+
+- Colours and type follow `docs/company-and-website-brief.md`. Body text uses `#6E6E6E`, not the
+  brief's `#7A7A7A`: the latter fails WCAG AA contrast (4.3:1). Buttons are orange with blue text
+  because white on `#FA7403` is only 2.8:1.
+- No client-side framework. JavaScript is only the form handler and Google Tag Manager, which
+  loads after the page has finished loading.

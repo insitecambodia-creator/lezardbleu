@@ -1,0 +1,40 @@
+---
+import { site, type Locale } from '../config';
+import { getContent, publishedLocales, localePath } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" href={localePath(locale)}>{site.name}</a>
+    <div class="site-header__tools">
+      {
+        publishedLocales.length > 1 && (
+          <nav aria-label={t.ui.language}>
+            <ul class="lang-switch">
+              {publishedLocales.map((l) => (
+                <li>
+                  <a
+                    href={localePath(l)}
+                    hreflang={l}
+                    lang={l}
+                    aria-current={l === locale ? 'true' : undefined}
+                    aria-label={getContent(l).langName}
+                  >
+                    {l}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+      <a class="header-phone" href={site.phone.href} aria-label={`${t.ui.call} ${site.phone.display}`}>
+        <span class="header-phone__num">{site.phone.display}</span>
+        <span class="header-phone__short" aria-hidden="true">{t.ui.call}</span>
+      </a>
+    </div>
+  </div>
+</header>
