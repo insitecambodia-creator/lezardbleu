@@ -15,6 +15,7 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
       <span class="rule" aria-hidden="true"></span>
       <h2 id="contact-title">{c.title}</h2>
       <p>{c.intro}</p>
+      <a class="text-link" href={localePath(locale, 'framing-quote/')}>{t.quote.link}</a>
       <address>
         {site.address.street}<br />
         {site.address.locality}, {site.address.countryName}

@@ -5,6 +5,8 @@
  * POST /api/contact  ->  validate, verify Turnstile, forward to the n8n webhook.
  */
 
+import { parseQuote, quoteSummary } from '../src/quote-schema';
+
 interface Env {
   ASSETS: Fetcher;
   N8N_WEBHOOK_URL: string;
@@ -23,6 +25,9 @@ interface Enquiry {
   locale?: unknown;
   pageUrl?: unknown;
   turnstileToken?: unknown;
+  /** 'framing-quote' for the multi-step quote form; absent for the contact form */
+  formType?: unknown;
+  quote?: unknown;
 }
 
 const INTERESTS = ['framing', 'printing', 'restoration', 'antiques'];
@@ -78,10 +83,23 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     if (!result.success) return json({ ok: false, error: 'captcha' }, 400);
   }
 
-  const interests = Array.isArray(data.interests)
+  let interests = Array.isArray(data.interests)
     ? data.interests.filter((i): i is string => typeof i === 'string' && INTERESTS.includes(i))
     : [];
   const locale = LOCALES.includes(data.locale as string) ? (data.locale as string) : 'en';
+  let message = text(data.message, 3000);
+
+  // Framing-quote form: every answer must be one of the known options. The answers are also written, in English,
+  // at the top of `message`, so an n8n flow built for the contact form (name, email, phone, topics, message)
+  // keeps working and the shop sees the whole request in one cell.
+  const isQuote = data.formType === 'framing-quote';
+  const quote = isQuote ? parseQuote(data.quote) : null;
+  if (isQuote) {
+    if (!quote) return json({ ok: false, error: 'invalid' }, 400);
+    interests = quote.have === 'digital' ? ['framing', 'printing'] : ['framing'];
+    const notes = message;
+    message = (quoteSummary(quote) + (notes ? `\n\nNotes: ${notes}` : '')).slice(0, 3000);
+  }
 
   const payload = {
     firstName,
@@ -89,7 +107,8 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     email,
     phone: text(data.phone, 40),
     interests,
-    message: text(data.message, 3000),
+    message,
+    ...(quote ? { formType: 'framing-quote', quote } : {}),
     locale,
     pageUrl: text(data.pageUrl, 300),
     submittedAt: new Date().toISOString(),

@@ -1,4 +1,5 @@
 import type { InterestKey } from '../config';
+import type { QUOTE_OPTIONS, QuoteKey } from '../quote-schema';
 
 export interface Service {
   title: string;
@@ -18,6 +19,7 @@ export interface Content {
     opensNewTab: string;
     gallery: string;
     home: string;
+    quote: string;
   };
   /** Hero H1, one entry per line */
   hero: { eyebrow: string; title: string[]; cta: string; imageAlt: string };
@@ -68,6 +70,28 @@ export interface Content {
     success: string;
     error: string;
     captchaError: string;
+  };
+  quote: {
+    metaTitle: string;
+    metaDescription: string;
+    title: string;
+    intro: string;
+    /** {n} and {total} are replaced */
+    stepOf: string;
+    next: string;
+    back: string;
+    submit: string;
+    sending: string;
+    choose: string;
+    recap: string;
+    contactLegend: string;
+    notes: string;
+    visit: string;
+    /** link under the contact form on the home page */
+    link: string;
+    steps: {
+      [K in QuoteKey]: { legend: string; hint?: string; options: Record<(typeof QUOTE_OPTIONS)[K][number], string> };
+    };
   };
   footer: { rights: string; visit: string };
 }

@@ -102,6 +102,25 @@ Local test: copy `.dev.vars.example` to `.dev.vars`, point it at an n8n test web
    until the checks in `CONTENT-TODO.md` pass**, and keep a backup for rollback (re-point DNS).
    Preserve existing email DNS records (MX, SPF, DKIM).
 
+## Framing quote page
+
+`/framing-quote/` (`/fr/framing-quote/`) is a multi-step form: five questions from the shop's "short website /
+quotation form" (what to frame, whether they have it, size, style, timing), then a contact step with a recap of the
+answers. One question per screen, a progress bar, Back/Next, and the answers stay if they go back. Without
+JavaScript all the questions appear on one page. It is not on the home page: the home page only links to it (contact
+section, footer). Text lives under `quote` in `src/i18n/`; the questions and answer keys in `src/quote-schema.ts`.
+
+It posts to the **same** `/api/contact` endpoint and n8n webhook as the contact form, so there is nothing new to set up
+in Cloudflare. The Worker rejects any answer that is not one of the known options and sends n8n the usual fields plus:
+
+- `message`: the answers in English at the top, then the visitor's notes, e.g. `Framing quote request` / `• What to
+  frame: Photograph` / … / `Notes: …`. An n8n flow that stores `message` therefore keeps the whole request.
+- `interests`: `["framing"]`, plus `"printing"` when they have a digital file to print.
+- `formType: "framing-quote"` and `quote: { item, have, size, style, timing }` (keys, not labels) for a flow that
+  wants to branch or fill separate columns.
+
+After sending, the visitor goes to the thank-you page. The data layer event is `framing_quote_submit`.
+
 ## Thank-you page
 
 After a successful send the form redirects to `/thank-you/` (`/fr/thank-you/`), a full-screen page over

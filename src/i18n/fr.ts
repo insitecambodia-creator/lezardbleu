@@ -18,6 +18,7 @@ export const fr: Content = {
     opensNewTab: 's’ouvre dans un nouvel onglet',
     gallery: 'Galerie',
     home: 'Accueil',
+    quote: 'Devis d’encadrement',
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
@@ -129,6 +130,72 @@ export const fr: Content = {
     error:
       'Désolé, une erreur s’est produite. Veuillez réessayer, ou nous contacter sur Telegram ou par téléphone.',
     captchaError: 'Veuillez effectuer la vérification puis réessayer.',
+  },
+  quote: {
+    metaTitle: 'Devis d’encadrement – Encadrement sur mesure à Phnom Penh | Le Lézard Bleu',
+    metaDescription:
+      'Demandez un devis pour un encadrement sur mesure à Phnom Penh. Répondez à cinq questions rapides sur votre pièce et dites-nous comment vous joindre.',
+    title: 'Demander un devis d’encadrement',
+    intro:
+      'Cinq questions rapides sur votre pièce, puis dites-nous comment vous joindre : nous reviendrons vers vous avec un devis. Mieux encore, apportez-la à la boutique, rue 240, et nous vous conseillerons sur place.',
+    stepOf: 'Étape {n} sur {total}',
+    next: 'Suivant',
+    back: 'Retour',
+    submit: 'Demander mon devis',
+    sending: 'Envoi…',
+    choose: 'Veuillez choisir une option pour continuer.',
+    recap: 'Votre projet',
+    contactLegend: 'Comment pouvons-nous vous joindre ?',
+    notes: 'Autre chose à nous préciser ?',
+    visit: 'Vous préférez en discuter ? Passez nous voir à la boutique, rue 240.',
+    link: 'Un projet d’encadrement ? Demandez un devis',
+    steps: {
+      item: {
+        legend: 'Que souhaitez-vous encadrer ?',
+        options: {
+          photograph: 'Une photographie',
+          artwork: 'Une œuvre / un tableau',
+          poster: 'Une affiche / un diplôme',
+          object: 'Un objet / un souvenir',
+          other: 'Autre chose',
+        },
+      },
+      have: {
+        legend: 'Avez-vous déjà la pièce ?',
+        options: {
+          physical: 'Oui, j’ai la pièce physique',
+          digital: 'J’ai un fichier numérique à imprimer',
+          advice: 'J’ai besoin de conseils',
+        },
+      },
+      size: {
+        legend: 'Quelle est sa taille approximative ?',
+        hint: 'Le format A4 mesure environ 21 × 30 cm, l’A2 environ 42 × 59 cm.',
+        options: {
+          small: 'Petite (jusqu’à l’A4)',
+          medium: 'Moyenne (jusqu’à l’A2)',
+          large: 'Grande (plus grande que l’A2)',
+          unsure: 'Je ne sais pas',
+        },
+      },
+      style: {
+        legend: 'Quel style d’encadrement préférez-vous ?',
+        options: {
+          modern: 'Moderne / minimaliste',
+          classic: 'Classique / traditionnel',
+          wood: 'Bois naturel',
+          advice: 'Je souhaite vos conseils',
+        },
+      },
+      timing: {
+        legend: 'Pour quand en avez-vous besoin ?',
+        options: {
+          asap: 'Dès que possible',
+          week: 'Sous une semaine',
+          none: 'Pas de date limite',
+        },
+      },
+    },
   },
   footer: {
     rights: 'Tous droits réservés.',
