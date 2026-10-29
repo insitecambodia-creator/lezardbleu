@@ -1,0 +1,237 @@
+---
+import { site, type Locale } from '../config';
+import { getContent, localePath } from '../i18n';
+import { QUOTE_KEYS, QUOTE_OPTIONS } from '../quote-schema';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+const q = t.quote;
+const c = t.contact;
+const total = QUOTE_KEYS.length + 1; // the questions, then the contact details
+// Turnstile has no Khmer widget language; let it detect the browser language instead.
+const turnstileLang = locale === 'km' ? 'auto' : locale;
+---
+
+<section class="section section--warm quote-section" aria-label={q.title}>
+  <div class="wrap quote-wrap">
+    <form
+      class="form quote"
+      method="post"
+      action="/api/contact"
+      novalidate
+      data-total={total}
+      data-step-of={q.stepOf}
+      data-sending={q.sending}
+      data-error={c.error}
+      data-captcha-error={c.captchaError}
+      data-thanks-url={localePath(locale, 'thank-you/')}
+    >
+      <div class="quote__progress">
+        <p class="quote__stepof" data-stepof>{q.stepOf.replace('{n}', '1').replace('{total}', String(total))}</p>
+        <div class="quote__track" aria-hidden="true"><span class="quote__fill" style={`width: ${100 / total}%`}></span></div>
+      </div>
+
+      {
+        QUOTE_KEYS.map((key, i) => {
+          const step = q.steps[key];
+          return (
+            <fieldset class="quote__step" data-step={i} data-key={key}>
+              <legend tabindex="-1">{step.legend}</legend>
+              {step.hint && <p class="quote__hint">{step.hint}</p>}
+              <div class="choices">
+                {QUOTE_OPTIONS[key].map((value) => (
+                  <label class="choice">
+                    <input type="radio" name={key} value={value} required />
+                    <span>{(step.options as Record<string, string>)[value]}</span>
+                  </label>
+                ))}
+              </div>
+              <p class="quote__error" role="alert" hidden>{q.choose}</p>
+            </fieldset>
+          );
+        })
+      }
+
+      <fieldset class="quote__step" data-step={QUOTE_KEYS.length} data-key="contact">
+        <legend tabindex="-1">{q.contactLegend}</legend>
+        <p class="quote__recap" data-recap hidden>
+          <strong>{q.recap}:</strong> <span data-recap-text></span>
+        </p>
+        <div class="form__row">
+          <div class="field">
+            <label for="q-firstName">{c.firstName} <span class="visually-hidden">({c.required})</span></label>
+            <input id="q-firstName" name="firstName" type="text" autocomplete="given-name" required maxlength="80" />
+          </div>
+          <div class="field">
+            <label for="q-lastName">{c.lastName} <span class="visually-hidden">({c.required})</span></label>
+            <input id="q-lastName" name="lastName" type="text" autocomplete="family-name" required maxlength="80" />
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="q-email">{c.email} <span class="visually-hidden">({c.required})</span></label>
+            <input id="q-email" name="email" type="email" autocomplete="email" required maxlength="160" spellcheck="false" />
+          </div>
+          <div class="field">
+            <label for="q-phone">{c.phone} <span class="hint">({c.optional})</span></label>
+            <input id="q-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="q-notes">{q.notes} <span class="hint">({c.optional})</span></label>
+          <textarea id="q-notes" name="message" maxlength="2500"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Honeypot: invisible to people, tempting to bots -->
+      <div class="hp" aria-hidden="true">
+        <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <input type="hidden" name="locale" value={locale} />
+
+      {
+        site.turnstileSiteKey && (
+          <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-language={turnstileLang} />
+        )
+      }
+
+      <div class="quote__actions">
+        <button class="btn btn--white" type="button" data-back hidden>{q.back}</button>
+        <button class="btn" type="button" data-next>{q.next}</button>
+        <button class="btn" type="submit" data-submit hidden>{q.submit}</button>
+      </div>
+      <p class="form__status" role="status" aria-live="polite"></p>
+      <noscript>
+        <p>{c.error}</p>
+      </noscript>
+    </form>
+    <p class="quote__visit">{q.visit}</p>
+  </div>
+</section>
+
+{
+  site.turnstileSiteKey && (
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+  )
+}
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form.quote');
+  if (form) {
+    const steps = Array.from(form.querySelectorAll<HTMLFieldSetElement>('.quote__step'));
+    const total = Number(form.dataset.total);
+    const stepOf = form.dataset.stepOf ?? '{n} / {total}';
+    const back = form.querySelector<HTMLButtonElement>('[data-back]')!;
+    const next = form.querySelector<HTMLButtonElement>('[data-next]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const label = form.querySelector<HTMLElement>('[data-stepof]')!;
+    const fill = form.querySelector<HTMLElement>('.quote__fill')!;
+    const status = form.querySelector<HTMLElement>('.form__status')!;
+    const recap = form.querySelector<HTMLElement>('[data-recap]')!;
+    const recapText = form.querySelector<HTMLElement>('[data-recap-text]')!;
+    let current = 0;
+
+    const say = (state: string, text: string) => {
+      status.dataset.state = state;
+      status.textContent = text;
+    };
+
+    const answerText = (step: HTMLFieldSetElement) =>
+      step.querySelector<HTMLInputElement>('input:checked')?.parentElement?.textContent?.trim() ?? '';
+
+    const show = (index: number, moveFocus: boolean) => {
+      current = index;
+      steps.forEach((s, i) => (s.hidden = i !== index));
+      label.textContent = stepOf.replace('{n}', String(index + 1)).replace('{total}', String(total));
+      fill.style.width = `${((index + 1) / total) * 100}%`;
+      back.hidden = index === 0;
+      next.hidden = index === total - 1;
+      submit.hidden = index !== total - 1;
+      if (index === total - 1) {
+        recapText.textContent = steps.slice(0, -1).map(answerText).filter(Boolean).join(' · ');
+        recap.hidden = false;
+      }
+      if (moveFocus) steps[index].querySelector<HTMLElement>('legend')?.focus();
+    };
+
+    // Valid when the question has an answer (radio steps) or its fields pass the browser's checks (contact step).
+    const valid = (step: HTMLFieldSetElement) => {
+      const radios = step.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+      if (radios.length) {
+        const ok = Array.from(radios).some((r) => r.checked);
+        step.querySelector<HTMLElement>('.quote__error')!.hidden = ok;
+        if (!ok) radios[0].focus();
+        return ok;
+      }
+      for (const field of Array.from(step.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea'))) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    };
+
+    form.addEventListener('change', (e) => {
+      const err = (e.target as HTMLElement).closest('.quote__step')?.querySelector<HTMLElement>('.quote__error');
+      if (err) err.hidden = true;
+    });
+
+    const advance = () => {
+      if (valid(steps[current]) && current < total - 1) show(current + 1, true);
+    };
+    next.addEventListener('click', advance);
+    back.addEventListener('click', () => current > 0 && show(current - 1, true));
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      // Enter inside a question moves to the next one instead of submitting early
+      if (current < total - 1) return advance();
+      if (!valid(steps[current])) return;
+
+      const data = new FormData(form);
+      if (form.querySelector('.cf-turnstile') && !data.get('cf-turnstile-response')) {
+        say('error', form.dataset.captchaError ?? '');
+        return;
+      }
+
+      submit.disabled = true;
+      say('pending', form.dataset.sending ?? '');
+      try {
+        const answer = (key: string) => String(data.get(key) ?? '');
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            formType: 'framing-quote',
+            quote: { item: answer('item'), have: answer('have'), size: answer('size'), style: answer('style'), timing: answer('timing') },
+            firstName: data.get('firstName'),
+            lastName: data.get('lastName'),
+            email: data.get('email'),
+            phone: data.get('phone'),
+            message: data.get('message'),
+            website: data.get('website'),
+            locale: data.get('locale'),
+            pageUrl: location.href,
+            turnstileToken: data.get('cf-turnstile-response'),
+          }),
+        });
+        const json = (await res.json().catch(() => ({}))) as { ok?: boolean };
+        if (!res.ok || !json.ok) throw new Error('failed');
+        (window as any).dataLayer?.push({ event: 'framing_quote_submit' });
+        try {
+          sessionStorage.setItem('lb-thanks-name', String(data.get('firstName') ?? '').trim().slice(0, 40));
+        } catch {}
+        if (form.dataset.thanksUrl) location.assign(form.dataset.thanksUrl);
+      } catch {
+        say('error', form.dataset.error ?? '');
+        submit.disabled = false;
+        (window as any).turnstile?.reset();
+      }
+    });
+
+    // JavaScript is on: show one step at a time (without it, every question is shown on one page)
+    form.classList.add('is-stepped');
+    show(0, false);
+  }
+</script>

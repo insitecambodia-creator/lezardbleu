@@ -15,6 +15,9 @@ Internal checklist, not published on the site.
 - [ ] **Gallery** (`src/data/gallery.ts`): descriptions are factual and make no claim about age, origin or
       value; check them, and the French. Photos #8 (blurred carved object) and #15 (reflections) are the
       weakest and sit last: remove them if you prefer. #14 has a person blurred in the background.
+- [ ] **Framing quote page** (`/framing-quote/`): check the wording and the French; decide where else to link it
+      (today: contact section on the home page and the footer). The n8n flow must store the `message` field,
+      otherwise the quote answers are not visible in the sheet.
 - [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
 - [ ] Original logo (vector) for the header.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is

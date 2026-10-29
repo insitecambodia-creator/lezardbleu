@@ -9,8 +9,8 @@
   /* Brand (docs/company-and-website-brief.md §7) */
   --blue: #10273d;
   --orange: #fa7403;
-  /* Orange for small text on white: the brand orange is 2.8:1 there, this is 4.6:1 */
-  --orange-text: #bd5700;
+  /* Orange for small text on white: the brand orange is 2.8:1 there, this is 5.1:1 on white, 4.7:1 on --bg-warm */
+  --orange-text: #b35200;
   /* Brand grey was #7a7a7a (4.3:1 on white, fails WCAG AA). This is the lightest grey that
      passes AA on white (5.1:1) and on --bg-warm (4.7:1). Do not lighten it. */
   --text: #6e6e6e;
@@ -1090,5 +1090,171 @@ dialog.lightbox::backdrop {
   @keyframes sheet-large {
     from { translate: 0 -0.6rem; rotate: 8deg; }
     to { translate: 0 0.6rem; rotate: 19deg; }
+  }
+}
+
+/* ---------- Framing quote: multi-step form ---------- */
+.quote-wrap {
+  max-width: 46rem;
+}
+.quote {
+  gap: 1.75rem;
+}
+.quote__progress {
+  display: grid;
+  gap: 0.6rem;
+}
+.quote__stepof {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.quote__track {
+  height: 6px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quote__fill {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+  border-radius: 3px;
+  transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.quote__step {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.quote__step[hidden] {
+  display: none;
+}
+/* Without JavaScript every question is shown; the progress bar only makes sense when stepping */
+.quote:not(.is-stepped) .quote__progress,
+.quote:not(.is-stepped) .quote__actions [data-next],
+.quote:not(.is-stepped) .quote__actions [data-back] {
+  display: none;
+}
+.quote:not(.is-stepped) .quote__actions [data-submit] {
+  display: inline-flex;
+}
+.quote legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  color: var(--blue);
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.quote legend:focus {
+  outline: none;
+}
+.quote legend + * {
+  clear: both;
+}
+.quote__hint {
+  margin-top: -0.5rem;
+  font-size: 0.95rem;
+}
+.choices {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+.choice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  background: #fff;
+  border: 2px solid #cfc9be;
+  border-radius: 4px;
+  color: var(--blue);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.choice:hover {
+  border-color: var(--blue);
+}
+.choice input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.choice span {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.choice span::before {
+  content: '';
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  background: #fff;
+}
+.choice:has(input:checked) {
+  border-color: var(--blue);
+  background: #f2f5f9;
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+.choice:has(input:checked) span::before {
+  background: var(--blue);
+  box-shadow: inset 0 0 0 3px #fff;
+}
+.choice:has(input:focus-visible) {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+.quote__error {
+  color: #a3281c;
+  font-weight: 600;
+}
+.quote__recap {
+  padding: 0.85rem 1rem;
+  background: var(--bg-warm);
+  border-left: 3px solid var(--orange);
+  font-size: 0.95rem;
+}
+.quote__recap strong {
+  color: var(--blue);
+}
+.quote__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.quote__actions [data-next],
+.quote__actions [data-submit] {
+  margin-left: auto;
+}
+.quote__actions [hidden] {
+  display: none;
+}
+.quote__visit {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .quote.is-stepped .quote__step:not([hidden]) {
+    animation: step-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  @keyframes step-in {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
   }
 }

@@ -17,6 +17,7 @@ export const en: Content = {
     opensNewTab: 'opens in a new tab',
     gallery: 'Gallery',
     home: 'Home',
+    quote: 'Framing quote',
   },
   hero: {
     eyebrow: 'Le Lezard Bleu – Phnom Penh',
@@ -128,6 +129,72 @@ export const en: Content = {
     error:
       'Sorry, something went wrong. Please try again, or contact us on Telegram or by phone.',
     captchaError: 'Please complete the verification and try again.',
+  },
+  quote: {
+    metaTitle: 'Framing Quote – Custom Picture Framing in Phnom Penh | Le Lézard Bleu',
+    metaDescription:
+      'Request a quote for custom picture framing in Phnom Penh. Answer five quick questions about your piece and tell us how to reach you.',
+    title: 'Get a framing quote',
+    intro:
+      'Five quick questions about your piece, then tell us how to reach you and we will come back with a quote. Even better, bring it to the shop on Street 240 and we will advise you in person.',
+    stepOf: 'Step {n} of {total}',
+    next: 'Next',
+    back: 'Back',
+    submit: 'Request my quote',
+    sending: 'Sending…',
+    choose: 'Please choose an option to continue.',
+    recap: 'Your project',
+    contactLegend: 'How can we reach you?',
+    notes: 'Anything else we should know?',
+    visit: 'Prefer to talk it through? Come and see us in the shop on Street 240.',
+    link: 'Planning a framing project? Get a framing quote',
+    steps: {
+      item: {
+        legend: 'What would you like to frame?',
+        options: {
+          photograph: 'Photograph',
+          artwork: 'Artwork / painting',
+          poster: 'Poster / certificate',
+          object: 'Object / memorabilia',
+          other: 'Other',
+        },
+      },
+      have: {
+        legend: 'Do you already have the item?',
+        options: {
+          physical: 'Yes, I have the physical item',
+          digital: 'I have a digital file to print',
+          advice: 'I need advice',
+        },
+      },
+      size: {
+        legend: 'What is its approximate size?',
+        hint: 'A4 is about 21 × 30 cm. A2 is about 42 × 59 cm.',
+        options: {
+          small: 'Small (up to A4)',
+          medium: 'Medium (up to A2)',
+          large: 'Large (larger than A2)',
+          unsure: 'Not sure',
+        },
+      },
+      style: {
+        legend: 'What style of framing do you prefer?',
+        options: {
+          modern: 'Modern / minimalist',
+          classic: 'Classic / traditional',
+          wood: 'Natural wood',
+          advice: 'I’d like your advice',
+        },
+      },
+      timing: {
+        legend: 'When do you need it?',
+        options: {
+          asap: 'As soon as possible',
+          week: 'Within a week',
+          none: 'No particular deadline',
+        },
+      },
+    },
   },
   footer: {
     rights: 'All rights reserved.',
