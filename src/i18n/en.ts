@@ -199,5 +199,7 @@ export const en: Content = {
   footer: {
     rights: 'All rights reserved.',
     visit: 'Visit us',
+    follow: 'Follow us',
+    google: 'Find us on Google',
   },
 };

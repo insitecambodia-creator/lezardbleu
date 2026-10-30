@@ -1258,3 +1258,22 @@ dialog.lightbox::backdrop {
     }
   }
 }
+
+/* ---------- Footer: social links ---------- */
+.site-footer__label {
+  margin: 0 0 0.35rem;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+:lang(km) .site-footer__label {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.site-footer__social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
