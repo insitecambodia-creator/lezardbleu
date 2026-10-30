@@ -200,5 +200,7 @@ export const fr: Content = {
   footer: {
     rights: 'Tous droits réservés.',
     visit: 'Nous trouver',
+    follow: 'Suivez-nous',
+    google: 'Nous trouver sur Google',
   },
 };

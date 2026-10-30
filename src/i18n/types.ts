@@ -93,7 +93,7 @@ export interface Content {
       [K in QuoteKey]: { legend: string; hint?: string; options: Record<(typeof QUOTE_OPTIONS)[K][number], string> };
     };
   };
-  footer: { rights: string; visit: string };
+  footer: { rights: string; visit: string; follow: string; google: string };
 }
 
 export type DeepPartial<T> = { [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K] };

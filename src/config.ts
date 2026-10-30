@@ -4,6 +4,12 @@ export const site = {
   url: 'https://www.lezard-bleu.com',
   phone: { display: '+855 17 935 968', href: 'tel:+85517935968' },
   telegram: 'https://t.me/lezard_bleu',
+  social: {
+    facebook: 'https://www.facebook.com/lezardbleu.kh/',
+    instagram: 'https://www.instagram.com/lezard.bleu.cambodia/',
+    /** Google Business Profile share link, as supplied by the owner */
+    google: 'https://share.google/10w7Qug6zAMVpz6Cd',
+  },
   /** URL of the Petit Futé listing. Not supplied yet: the "Read the review" link is hidden until set. */
   petitFuteUrl: '',
   // Reconfirm before launch (see CONTENT-TODO.md).

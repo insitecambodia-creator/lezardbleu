@@ -4,6 +4,13 @@ import { getContent, localePath } from '../i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const t = getContent(locale);
+
+const social = [
+  { name: 'Facebook', href: site.social.facebook },
+  { name: 'Instagram', href: site.social.instagram },
+  { name: 'Telegram', href: site.telegram },
+  { name: t.footer.google, href: site.social.google },
+];
 ---
 
 <footer class="site-footer">
@@ -18,8 +25,21 @@ const t = getContent(locale);
     <div>
       <a href={localePath(locale, 'framing-quote/')}>{t.ui.quote}</a><br />
       <a href={localePath(locale, 'gallery/')}>{t.ui.gallery}</a><br />
-      <a href={site.phone.href}>{site.phone.display}</a><br />
-      <a href={site.telegram} target="_blank" rel="noopener">Telegram</a>
+      <a href={site.phone.href}>{site.phone.display}</a>
+    </div>
+    <div>
+      <p class="site-footer__label">{t.footer.follow}</p>
+      <ul class="site-footer__social">
+        {
+          social.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener">
+                {s.name}<span class="visually-hidden"> ({t.ui.opensNewTab})</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
     <p>© {new Date().getFullYear()} {site.name}. {t.footer.rights}</p>
   </div>

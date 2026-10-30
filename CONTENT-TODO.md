@@ -10,6 +10,9 @@ Internal checklist, not published on the site.
       authenticity. Add an object photo in `src/assets/antiques/` when available.
 - [ ] **Address** `#61, Oknha Chhun (St 240)` and phone: reconfirm (`src/config.ts`).
 - [ ] Opening hours, public email and Google Maps pin were not supplied, so they are not shown.
+- [ ] Footer social links (`src/config.ts`): Facebook, Instagram and the Google share link were supplied by the owner;
+      check that the Google link opens the right business profile. Facebook, Instagram and Telegram are also in the
+      structured data (`sameAs`).
 - [ ] Claims carried over unchanged from the live site: "conservation-grade materials",
       "archival pigment inks". Keep only what the business can substantiate (brief §4).
 - [ ] **Gallery** (`src/data/gallery.ts`): descriptions are factual and make no claim about age, origin or
