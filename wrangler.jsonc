@@ -5,6 +5,9 @@
   "compatibility_date": "2026-10-01",
   // Keep variables and secrets set in the Cloudflare dashboard (e.g. N8N_WEBHOOK_URL) when deploying from Git.
   "keep_vars": true,
+  // Do not serve the site on the *.workers.dev address: it is reached through its custom domain only.
+  // (Custom domains and routes are managed in the Cloudflare dashboard and are not changed by this setting.)
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
