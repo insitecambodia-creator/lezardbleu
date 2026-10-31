@@ -130,6 +130,12 @@ out of the sitemap. The form also pushes a `contact_form_submit` event to the GT
 `/thank-you/` page view) as the conversion in Google Analytics, not both. Text lives under `thanks` in
 `src/i18n/`.
 
+**`workers_dev` is `false`** in `wrangler.jsonc`: the site is not served on the `*.workers.dev` address, only on its custom
+domain, which is set in the Cloudflare dashboard (Workers & Pages → `lezardbleu` → Settings → Domains & Routes), not in
+this file. Wrangler leaves dashboard-managed domains alone because the config declares no `routes`. To test on a
+`workers.dev` address again, set `workers_dev` to `true` and deploy. This setting also switches off Workers Builds'
+preview URLs for non-production branches (they follow `workers_dev` unless `preview_urls` is set).
+
 ## Design notes
 
 - Colours and type follow `docs/company-and-website-brief.md`. Body text uses `#6E6E6E`, not the
