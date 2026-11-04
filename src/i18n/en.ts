@@ -4,7 +4,9 @@ export const en: Content = {
   published: true,
   langName: 'English',
   meta: {
-    title: 'Custom Framing & Fine Art Printing in Phnom Penh | Le Lézard Bleu',
+    title: 'Custom Framing Phnom Penh | Le Lézard Bleu',
+    // Social-sharing title, unchanged from before the SEO title was shortened
+    ogTitle: 'Custom Framing & Fine Art Printing in Phnom Penh | Le Lézard Bleu',
     description:
       'Custom picture framing, fine art printing and Cambodian art in Phnom Penh. Discover Le Lézard Bleu’s framing workshop and boutique on Street 240.',
     ogAlt: 'Le Lezard Bleu – custom framing in Phnom Penh',

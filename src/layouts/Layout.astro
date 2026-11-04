@@ -20,6 +20,7 @@ const abs = (path: string) => new URL(path, site.url).href;
 const canonical = abs(Astro.url.pathname);
 const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
 const metaTitle = title ?? t.meta.title;
+const socialTitle = title ?? t.meta.ogTitle ?? t.meta.title;
 const metaDescription = description ?? t.meta.description;
 const ogLocale = { en: 'en_US', fr: 'fr_FR', km: 'km_KH' }[locale];
 
@@ -65,7 +66,7 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:title" content={metaTitle} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={abs(og.src)} />
