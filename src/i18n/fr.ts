@@ -5,7 +5,9 @@ export const fr: Content = {
   published: true,
   langName: 'Français',
   meta: {
-    title: 'Encadrement sur mesure et impression d’art à Phnom Penh | Le Lézard Bleu',
+    title: 'Encadrement sur mesure Phnom Penh | Le Lézard Bleu',
+    // Social-sharing title, unchanged from before the SEO title was shortened
+    ogTitle: 'Encadrement sur mesure et impression d’art à Phnom Penh | Le Lézard Bleu',
     description:
       'Encadrement sur mesure, impression d’art et art cambodgien à Phnom Penh. Découvrez l’atelier d’encadrement et la boutique du Lézard Bleu, rue 240.',
     ogAlt: 'Le Lezard Bleu – encadrement sur mesure à Phnom Penh',
