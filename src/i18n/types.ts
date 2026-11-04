@@ -10,7 +10,7 @@ export interface Content {
   /** Km is built but hidden until a native-speaker translation is in place. */
   published: boolean;
   langName: string;
-  meta: { title: string; description: string; ogAlt: string };
+  meta: { title: string; /** social-sharing title; defaults to `title` */ ogTitle?: string; description: string; ogAlt: string };
   ui: {
     skip: string;
     language: string;
