@@ -136,6 +136,14 @@ framing one. Both forms are defined in `src/quote-schema.ts` (questions and answ
 English at the top of `message`, and `interests` filled in (`printing` for the printing form, plus `framing` when
 they want it framed). The data layer events are `framing_quote_submit` and `printing_quote_submit`.
 
+## 404 page
+
+`src/pages/404.astro` becomes `404.html`; Cloudflare serves it, with a real 404 status, for any address that does not
+exist (`not_found_handling: "404-page"` in `wrangler.jsonc`). It holds both languages and a small script keeps the one
+that matches the address (`/fr/…` shows French; with JavaScript off both are shown). It is `noindex`, has no structured
+data and is not in the sitemap. API addresses that do not exist still answer in JSON. When a page is added or renamed,
+update the "Or go to" links in that file if they point to it.
+
 ## Structured data
 
 `src/layouts/Layout.astro` emits one JSON-LD graph per indexable page: the business (`LocalBusiness`, the same `@id`
