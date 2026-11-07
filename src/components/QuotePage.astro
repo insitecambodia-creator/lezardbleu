@@ -5,13 +5,22 @@ import Footer from './Footer.astro';
 import QuoteForm from './QuoteForm.astro';
 import type { Locale } from '../config';
 import { getContent } from '../i18n';
+import type { QuoteKind } from '../quote-schema';
 
-const { locale } = Astro.props as { locale: Locale };
-const q = getContent(locale).quote;
+const { locale, kind = 'framing' } = Astro.props as { locale: Locale; kind?: QuoteKind };
+const t = getContent(locale);
+const q = kind === 'printing' ? t.printQuote : t.quote;
+const page = kind === 'printing' ? 'printing-quote/' : 'framing-quote/';
 ---
 
-<Layout locale={locale} page="framing-quote/" title={q.metaTitle} description={q.metaDescription}>
-  <Header locale={locale} page="framing-quote/" />
+<Layout
+  locale={locale}
+  page={page}
+  title={q.metaTitle}
+  description={q.metaDescription}
+  breadcrumb={[{ name: q.title, path: page }]}
+>
+  <Header locale={locale} page={page} />
   <main id="content">
     <section class="section gallery-head" aria-labelledby="quote-title">
       <div class="wrap gallery-head__inner" data-reveal>
@@ -20,7 +29,7 @@ const q = getContent(locale).quote;
         <p>{q.intro}</p>
       </div>
     </section>
-    <QuoteForm locale={locale} />
+    <QuoteForm locale={locale} kind={kind} />
   </main>
   <Footer locale={locale} />
 </Layout>

@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config';
+import { getContent } from '../i18n';
+
+// One 404 page for the whole site: Cloudflare serves /404.html for any missing address, in either language.
+// Both languages are in the page; a tiny script keeps the one that matches the address (/fr/… → French).
+// Without JavaScript both are shown, one after the other.
+const en = getContent('en');
+const fr = getContent('fr');
+const blocks = [
+  {
+    lang: 'en',
+    base: '/',
+    title: 'Page not found | Le Lézard Bleu',
+    eyebrow: 'Error 404',
+    heading: 'This page can’t be found',
+    text: 'The page you are looking for may have moved, or it may never have existed.',
+    home: 'Back to the home page',
+    more: 'Or go to',
+    call: `Call ${site.phone.display}`,
+    links: [
+      { href: '/fine-art-printing/', label: en.ui.printing },
+      { href: '/framing-quote/', label: en.ui.quote },
+      { href: '/gallery/', label: en.ui.gallery },
+    ],
+  },
+  {
+    lang: 'fr',
+    base: '/fr/',
+    title: 'Page introuvable | Le Lézard Bleu',
+    eyebrow: 'Erreur 404',
+    heading: 'Cette page est introuvable',
+    text: 'La page que vous cherchez a peut-être été déplacée, ou elle n’a jamais existé.',
+    home: 'Retour à l’accueil',
+    more: 'Ou allez vers',
+    call: `Appeler le ${site.phone.display}`,
+    links: [
+      { href: '/fr/fine-art-printing/', label: fr.ui.printing },
+      { href: '/fr/framing-quote/', label: fr.ui.quote },
+      { href: '/fr/gallery/', label: fr.ui.gallery },
+    ],
+  },
+];
+---
+
+<Layout locale="en" title={blocks[0].title} noindex>
+  <main id="content" class="notfound">
+    <div class="notfound__box">
+      <a class="wordmark" href="/">{site.name}</a>
+      {
+        blocks.map((b) => (
+          <section class="notfound__lang" lang={b.lang} data-lang={b.lang} data-title={b.title}>
+            <p class="eyebrow">{b.eyebrow}</p>
+            <h1>{b.heading}</h1>
+            <p>{b.text}</p>
+            <div><a class="btn" href={b.base}>{b.home}</a></div>
+            <p class="notfound__more">
+              {b.more}{' '}
+              {b.links.map((l, i) => (
+                <>
+                  {i > 0 && ' · '}
+                  <a href={l.href}>{l.label}</a>
+                </>
+              ))}
+              {' · '}
+              <a href={site.phone.href}>{b.call}</a>
+            </p>
+          </section>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  (function () {
+    var lang = location.pathname.indexOf('/fr/') === 0 ? 'fr' : 'en';
+    var blocks = document.querySelectorAll('.notfound__lang');
+    blocks.forEach(function (el) {
+      if (el.dataset.lang === lang) {
+        document.title = el.dataset.title;
+        document.documentElement.lang = lang;
+      } else {
+        el.hidden = true;
+      }
+    });
+  })();
+</script>

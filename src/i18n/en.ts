@@ -9,7 +9,7 @@ export const en: Content = {
     ogTitle: 'Custom Framing & Fine Art Printing in Phnom Penh | Le Lézard Bleu',
     description:
       'Custom picture framing, fine art printing and Cambodian art in Phnom Penh. Discover Le Lézard Bleu’s framing workshop and boutique on Street 240.',
-    ogAlt: 'Le Lezard Bleu – custom framing in Phnom Penh',
+    ogAlt: 'Le Lézard Bleu – custom framing in Phnom Penh',
   },
   ui: {
     skip: 'Skip to content',
@@ -20,9 +20,10 @@ export const en: Content = {
     gallery: 'Gallery',
     home: 'Home',
     quote: 'Framing quote',
+    printing: 'Fine art printing',
   },
   hero: {
-    eyebrow: 'Le Lezard Bleu – Phnom Penh',
+    eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Custom Framing', '& Fine Art Printing', 'in Phnom Penh'],
     cta: 'Contact us today',
     imageAlt: 'A framed abstract painting in blue and white hanging in a bright living room',
@@ -57,24 +58,25 @@ export const en: Content = {
   printing: {
     title: 'Fine Art Printing',
     paragraphs: [
-      'A good print deserves the same care as the frame around it. In our atelier, we print photographs, drawings, and artwork on a professional large-format printer using archival pigment inks and quality art papers, so the detail, depth, and tone of the original come through.',
+      'A good print deserves the same care as the frame around it. In our atelier, we print photographs, drawings, and artwork on a professional large-format printer using 12-colour pigment inks and quality art papers, so the detail, depth, and tone of the original come through.',
       'Whether you’re reproducing an artist’s work, enlarging a treasured photograph, or preparing a piece for exhibition, we can print it and frame it, all under one roof.',
     ],
     imageAlt: 'A large-format printer producing a charcoal-style print of a Khmer classical dancer',
     cta: 'Ask about printing',
+    learnMore: 'Learn more about fine art printing',
   },
   antiques: {
     title: 'Khmer Artifacts & Antiques',
     paragraphs: [
-      'Visit Le Lezard Bleu on Street 240 to discover the Khmer antique objects and artifacts available in the shop.',
+      'Visit Le Lézard Bleu on Street 240 to discover the Khmer antique objects and artifacts available in the shop.',
     ],
     galleryCta: 'View the gallery',
     imageAlt: 'A bronze figure with several arms, standing in the shop',
   },
   gallery: {
-    metaTitle: 'Gallery – Le Lezard Bleu, Phnom Penh',
+    metaTitle: 'Gallery – Le Lézard Bleu, Phnom Penh',
     metaDescription:
-      'A look inside Le Lezard Bleu on Street 240, Phnom Penh: framed works, frame mouldings, Khmer artifacts and antiques.',
+      'A look inside Le Lézard Bleu on Street 240, Phnom Penh: framed works, frame mouldings, Khmer artifacts and antiques.',
     title: 'Gallery',
     intro:
       'A look inside the shop on Street 240: framed works, frame mouldings, artifacts and antiques. Ask us about any piece you see.',
@@ -94,7 +96,7 @@ export const en: Content = {
     cta: 'Read the review',
   },
   thanks: {
-    metaTitle: 'Thank you – Le Lezard Bleu',
+    metaTitle: 'Thank you – Le Lézard Bleu',
     title: 'Thank you',
     titleNamed: 'Thank you {name}',
     received: 'We have received your message and will be in touch soon.',
@@ -196,6 +198,119 @@ export const en: Content = {
           none: 'No particular deadline',
         },
       },
+    },
+  },
+  printQuote: {
+    metaTitle: 'Fine Art Printing Quote | Le Lézard Bleu',
+    metaDescription:
+      'Request a quote for fine art printing in Phnom Penh. Answer a few quick questions about your image and tell us how to reach you.',
+    title: 'Get a printing quote',
+    intro:
+      'A few quick questions about your image, then tell us how to reach you and we will come back with a quote. Even better, bring it to the shop on Street 240 and we will advise you in person.',
+    steps: {
+      what: {
+        legend: 'What would you like to print?',
+        options: { photograph: 'Photograph', artwork: 'Reproduction of an artwork', digital: 'Digital artwork', other: 'Other' },
+      },
+      have: {
+        legend: 'Do you have the file?',
+        options: {
+          digital: 'Yes, I have a digital file',
+          original: 'I have the original and would like advice',
+          advice: 'I need advice',
+        },
+      },
+      media: {
+        legend: 'Paper or canvas?',
+        options: { paper: 'Fine art paper', canvas: 'Canvas', unsure: 'Not sure, I’d like your advice' },
+      },
+      size: {
+        legend: 'What is the approximate size?',
+        hint: 'A4 is about 21 × 30 cm. A2 is about 42 × 59 cm. If you know the exact size, add it in your notes at the end.',
+        options: { small: 'Small (up to A4)', medium: 'Medium (up to A2)', large: 'Large (larger than A2)', unsure: 'Not sure' },
+      },
+      finish: {
+        legend: 'What should happen after printing?',
+        options: { print: 'Print only', framed: 'Print and frame it', stretched: 'Stretch the canvas', unsure: 'Not sure yet' },
+      },
+      timing: {
+        legend: 'When do you need it?',
+        options: { asap: 'As soon as possible', week: 'Within a week', none: 'No particular deadline' },
+      },
+    },
+  },
+  printingPage: {
+    metaTitle: 'Fine Art Printing in Phnom Penh | Le Lézard Bleu',
+    metaDescription:
+      'Fine art printing in Phnom Penh on Canson, Hahnemühle and Epson papers or 380 g/m² matte cotton canvas. Epson pigment inks and custom framing.',
+    ogTitle: 'Print Your Emotions | Fine Art Printing at Le Lézard Bleu',
+    ogDescription:
+      'Beautiful fine-art prints on Canson, Hahnemühle and Epson papers or premium matte cotton canvas. Printed and framed in Phnom Penh.',
+    ogAlt: 'Epson SureColor SC-P9530 wide-format printer producing a fine art print',
+    crumb: 'Fine Art Printing',
+    eyebrow: 'Fine art printing in Phnom Penh',
+    title: 'Print Your Emotions',
+    lead: 'Professional fine art printing on premium papers and heavyweight cotton canvas, using our Epson SureColor SC-P9530 with 12-colour pigment inks.',
+    cta: 'Request a quote',
+    imageAlt: 'Epson SureColor SC-P9530 wide-format printer producing a fine art print',
+    imageCaption: 'Epson SureColor SC-P9530. Manufacturer image.',
+    paper: {
+      title: 'Fine Art Paper Printing',
+      text: [
+        'We print photographs, drawings and artwork on fine art papers from Canson, Hahnemühle and Epson. Whether you are reproducing an artist’s work, enlarging a treasured photograph or preparing a piece for exhibition, we can print it and frame it, all under one roof.',
+      ],
+      brandsTitle: 'Our Fine Art Papers',
+      brands: ['Canson', 'Hahnemühle', 'Epson'],
+      note: 'Tell us what you are printing and we will help you choose the right paper.',
+    },
+    canvas: {
+      title: 'Fine Art Canvas Printing',
+      text: 'Prints on heavyweight 380 g/m² matte cotton canvas, finished with two layers of UV-protective varnish. Canvas stretching is among the services we offer.',
+      specs: ['380 g/m² matte cotton canvas', 'Two layers of UV-protective varnish', 'Canvas stretching available'],
+    },
+    printer: {
+      title: 'Precision Printing with the Epson SureColor SC-P9530',
+      text: [
+        'Our Epson SureColor SC-P9530 is a 44-inch-class wide-format printer (about 112 cm wide) with a 12-colour pigment ink set.',
+        'Tell us the size you have in mind and we will confirm what we can print.',
+      ],
+    },
+    frame: {
+      title: 'From Print to Frame',
+      text: 'A print is only half the picture. Choose the frame at the same shop: we can print it and frame it, all under one roof.',
+      link: 'Get a framing quote',
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        {
+          q: 'What is the difference between fine art paper and canvas printing?',
+          a: 'Fine art paper suits fine detail and is usually framed behind glass or acrylic. Canvas has a woven texture and can be displayed stretched on a frame, without glass. If you are unsure which suits your image, we will advise you.',
+        },
+        {
+          q: 'Can you print my photography or artwork in large sizes?',
+          a: 'We print large formats on a 44-inch-class printer. Tell us the size you have in mind and we will confirm what we can do.',
+        },
+        {
+          q: 'Can you help me choose paper, canvas and framing?',
+          a: 'Of course. Tell us about your image and where it will hang, and we will suggest a paper or canvas and, if you wish, a frame.',
+        },
+        {
+          q: 'How should I display and care for pigment prints?',
+          a: 'As a general rule, keep prints out of direct sunlight, damp and heat, and handle paper by the edges. Framing a paper print behind glass or acrylic protects the surface. Ask us for advice on your specific piece.',
+        },
+      ],
+    },
+    final: {
+      title: 'Discuss Your Printing Project',
+      text: 'Tell us about your image, the size you have in mind and where it will hang, and we will come back with a quote. Even better, bring it to the shop on Street 240.',
+      cta: 'Request a quote',
+    },
+    service: {
+      name: 'Fine Art Printing',
+      type: 'Fine art paper printing and cotton canvas printing',
+      description:
+        'Professional fine art printing using an Epson SureColor SC-P9530 with 12-colour pigment inks, with a selection of Canson, Hahnemühle and Epson papers and heavyweight 380 g/m² matte cotton canvas. Custom framing is also available.',
     },
   },
   footer: {

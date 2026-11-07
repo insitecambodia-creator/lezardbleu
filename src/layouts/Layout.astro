@@ -4,6 +4,8 @@ import '../styles/global.css';
 import { site, type Locale } from '../config';
 import { getContent, publishedLocales, localePath } from '../i18n';
 import hero from '../assets/images/hero.webp';
+import storefront from '../assets/images/storefront-2026-2.jpg';
+import logo from '../assets/brand/logo1.jpg';
 
 interface Props {
   locale: Locale;
@@ -12,34 +14,107 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  /** Social-sharing text and image, when they differ from the SEO ones */
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: ImageMetadata;
+  ogAlt?: string;
+  /** Breadcrumb below Home, e.g. [{ name: 'Gallery', path: 'gallery/' }] (none on the home page) */
+  breadcrumb?: { name: string; path: string }[];
+  /** Extra structured-data nodes for this page (e.g. a Service) and the id of the page's main entity */
+  schema?: Record<string, unknown>[];
+  mainEntity?: string;
 }
-const { locale, page = '', title, description, noindex = false } = Astro.props;
+const {
+  locale,
+  page = '',
+  title,
+  description,
+  noindex = false,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogAlt,
+  breadcrumb = [],
+  schema = [],
+  mainEntity,
+} = Astro.props;
 const t = getContent(locale);
 
 const abs = (path: string) => new URL(path, site.url).href;
 const canonical = abs(Astro.url.pathname);
-const og = await getImage({ src: hero, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
+const og = await getImage({ src: ogImage ?? hero, width: 1200, height: 630, format: 'jpg', fit: 'cover' });
 const metaTitle = title ?? t.meta.title;
-const socialTitle = title ?? t.meta.ogTitle ?? t.meta.title;
+const socialTitle = ogTitle ?? title ?? t.meta.ogTitle ?? t.meta.title;
 const metaDescription = description ?? t.meta.description;
+const socialDescription = ogDescription ?? metaDescription;
+const socialAlt = ogAlt ?? t.meta.ogAlt;
 const ogLocale = { en: 'en_US', fr: 'fr_FR', km: 'km_KH' }[locale];
+const indexable = t.published && !noindex;
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: site.name,
-  url: site.url,
-  image: abs(og.src),
-  telephone: site.phone.display,
-  description: t.meta.description,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: site.address.street,
-    addressLocality: site.address.locality,
-    addressCountry: site.address.country,
+// Structured data: one shared business record (same @id on every page), the website, this page and its breadcrumb,
+// plus any page-specific nodes. Not emitted on noindex pages.
+const businessId = `${site.url}/#business`;
+const websiteId = `${site.url}/#website`;
+const shopPhoto = await getImage({ src: storefront, width: 1200, format: 'jpg' });
+const logoImage = await getImage({ src: logo, width: 512, format: 'jpg' });
+const breadcrumbId = `${canonical}#breadcrumb`;
+const graph = [
+  {
+    '@type': 'LocalBusiness',
+    '@id': businessId,
+    name: site.name,
+    url: `${site.url}/`,
+    image: abs(shopPhoto.src),
+    logo: abs(logoImage.src),
+    telephone: site.phone.href.replace('tel:', ''),
+    description: t.meta.description,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      addressLocality: site.address.locality,
+      addressCountry: site.address.country,
+    },
+    sameAs: [site.social.facebook, site.social.instagram, site.telegram],
   },
-  sameAs: [site.social.facebook, site.social.instagram, site.telegram],
-};
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: `${site.url}/`,
+    name: site.name,
+    publisher: { '@id': businessId },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: metaTitle,
+    description: metaDescription,
+    inLanguage: locale,
+    isPartOf: { '@id': websiteId },
+    ...(mainEntity ? { mainEntity: { '@id': mainEntity } } : {}),
+    ...(breadcrumb.length ? { breadcrumb: { '@id': breadcrumbId } } : {}),
+  },
+  ...(breadcrumb.length
+    ? [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': breadcrumbId,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: t.ui.home, item: abs(localePath(locale)) },
+            ...breadcrumb.map((b, i) => ({
+              '@type': 'ListItem',
+              position: i + 2,
+              name: b.name,
+              item: abs(localePath(locale, b.path)),
+            })),
+          ],
+        },
+      ]
+    : []),
+  ...schema,
+];
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
 <!doctype html>
@@ -57,7 +132,7 @@ const jsonLd = {
       ))
     }
     <link rel="alternate" hreflang="x-default" href={abs(localePath('en', page))} />
-    {(!t.published || noindex) && <meta name="robots" content="noindex" />}
+    <meta name="robots" content={indexable ? 'index,follow,max-image-preview:large' : 'noindex'} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -67,13 +142,17 @@ const jsonLd = {
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={socialTitle} />
-    <meta property="og:description" content={metaDescription} />
+    <meta property="og:description" content={socialDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={abs(og.src)} />
-    <meta property="og:image:alt" content={t.meta.ogAlt} />
+    <meta property="og:image:alt" content={socialAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={socialDescription} />
+    <meta name="twitter:image" content={abs(og.src)} />
+    <meta name="twitter:image:alt" content={socialAlt} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {indexable && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <script is:inline>
       document.documentElement.classList.add('js');

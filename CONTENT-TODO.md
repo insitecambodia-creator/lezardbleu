@@ -21,6 +21,13 @@ Internal checklist, not published on the site.
 - [ ] **Framing quote page** (`/framing-quote/`): check the wording and the French; decide where else to link it
       (today: contact section on the home page and the footer). The n8n flow must store the `message` field,
       otherwise the quote answers are not visible in the sheet.
+- [ ] **Fine art printing page** (`/fine-art-printing/`): written only from confirmed facts. Still to confirm, then add:
+      exact paper references, weights and finishes per brand; who applies the varnish and does the canvas stretching;
+      the real maximum and minimum print sizes; file requirements, turnaround, pricing and delivery. The "12-colour
+      pigment inks" wording comes from Epson's published specification for the model. The printer photo is Epson's
+      manufacturer image (it also shows the optional SpectroProofer unit): check Epson's terms for using it, and replace
+      it with a photo of your own machine when you have one. FAQ answers (paper versus canvas, care) are general
+      guidance: check them, and the French. Printing quote form (`/printing-quote/`): check the six questions.
 - [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
 - [ ] Original logo (vector) for the header.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is

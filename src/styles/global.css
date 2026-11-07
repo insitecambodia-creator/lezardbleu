@@ -1277,3 +1277,182 @@ dialog.lightbox::backdrop {
   padding: 0;
   list-style: none;
 }
+
+/* ---------- Fine art printing page ---------- */
+.print-hero {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  background: #fff;
+}
+.print-hero__inner {
+  display: grid;
+  gap: 2.5rem clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+}
+.print-hero__copy {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+.print-hero h1 {
+  font-size: clamp(2.5rem, 1.1rem + 5vw, 4.4em);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+:lang(km) .print-hero h1 {
+  font-size: clamp(2.2rem, 1rem + 4vw, 3.6em);
+  line-height: 1.3;
+}
+.print-hero__lead {
+  font-size: 1.2rem;
+  max-width: 34rem;
+}
+.print-hero__figure {
+  margin: 0;
+}
+.print-hero__figure img {
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+.print-hero__figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.print-grid {
+  display: grid;
+  gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  align-items: start;
+}
+.print-grid > div,
+.print-grid > ul {
+  display: grid;
+  gap: 1.1rem;
+  align-content: start;
+}
+.print-grid .h2-small {
+  margin: 0;
+}
+.brands,
+.specs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.brands li {
+  padding: 0.5rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--blue);
+  font-weight: 600;
+}
+.specs {
+  display: grid;
+  gap: 0.75rem;
+}
+.specs li {
+  padding: 0.9rem 1.1rem;
+  background: var(--bg-warm);
+  border-left: 3px solid var(--orange);
+  color: var(--blue);
+  font-weight: 500;
+}
+.faq {
+  max-width: 52rem;
+}
+.faq dl {
+  display: grid;
+  gap: 1.75rem;
+  margin: 1.75rem 0 0;
+}
+.faq dt {
+  color: var(--blue);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.faq dd {
+  margin: 0.4rem 0 0;
+}
+.print-final__title {
+  color: #fff;
+}
+.print-final__text {
+  max-width: 38rem;
+  font-size: 1.1rem;
+  color: #e3e8ee;
+}
+@media (max-width: 48rem) {
+  .print-hero__inner,
+  .print-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 404 page ---------- */
+.notfound {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 3rem var(--gutter);
+  background: var(--bg-warm);
+}
+.notfound__box {
+  position: relative;
+  display: grid;
+  gap: 2.5rem;
+  justify-items: start;
+  width: min(100%, 38rem);
+  padding: clamp(2rem, 6vw, 3.5rem);
+  background: #fff;
+}
+/* Two corner brackets, echoing the frame in the logo */
+.notfound__box::before,
+.notfound__box::after {
+  content: '';
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  pointer-events: none;
+}
+.notfound__box::before {
+  top: -0.75rem;
+  right: -0.75rem;
+  border-top: 6px solid var(--blue);
+  border-right: 6px solid var(--blue);
+}
+.notfound__box::after {
+  bottom: -0.75rem;
+  left: -0.75rem;
+  border-bottom: 6px solid var(--blue);
+  border-left: 6px solid var(--blue);
+}
+.notfound__lang {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+.notfound__lang[hidden] {
+  display: none;
+}
+.notfound__lang + .notfound__lang {
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.notfound h1 {
+  font-size: clamp(2rem, 1.2rem + 3vw, 3rem);
+  line-height: 1.15;
+}
+.notfound__more {
+  font-size: 0.95rem;
+}
+.notfound__more a {
+  font-weight: 600;
+}

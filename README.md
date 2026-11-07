@@ -121,6 +121,37 @@ in Cloudflare. The Worker rejects any answer that is not one of the known option
 
 After sending, the visitor goes to the thank-you page. The data layer event is `framing_quote_submit`.
 
+## Fine art printing page and printing quote
+
+`/fine-art-printing/` (`/fr/fine-art-printing/`): the dedicated printing page, built from the owner's SEO brief. Text
+under `printingPage` in `src/i18n/`; the photo is `src/assets/images/epson-surecolor-sc-p9530.webp` (shown with the
+caption "Manufacturer image"). It states only confirmed facts: the printer model (SC-P9530, confirmed by Pierre on
+30 October 2026), the paper brands, the 380 g/m² matte cotton canvas with two layers of UV-protective varnish, and
+that canvas stretching is offered. It does not name papers, finishes, sizes or who applies the varnish; add those
+when they are confirmed.
+
+`/printing-quote/` (`/fr/printing-quote/`) is a second multi-step quote form, built on the same component as the
+framing one. Both forms are defined in `src/quote-schema.ts` (questions and answer keys) and send the same payload to
+`/api/contact` and your n8n webhook, with `formType` set to `framing-quote` or `printing-quote`, the answers in
+English at the top of `message`, and `interests` filled in (`printing` for the printing form, plus `framing` when
+they want it framed). The data layer events are `framing_quote_submit` and `printing_quote_submit`.
+
+## 404 page
+
+`src/pages/404.astro` becomes `404.html`; Cloudflare serves it, with a real 404 status, for any address that does not
+exist (`not_found_handling: "404-page"` in `wrangler.jsonc`). It holds both languages and a small script keeps the one
+that matches the address (`/fr/…` shows French; with JavaScript off both are shown). It is `noindex`, has no structured
+data and is not in the sitemap. API addresses that do not exist still answer in JSON. When a page is added or renamed,
+update the "Or go to" links in that file if they point to it.
+
+## Structured data
+
+`src/layouts/Layout.astro` emits one JSON-LD graph per indexable page: the business (`LocalBusiness`, the same `@id`
+`https://www.lezard-bleu.com/#business` everywhere, with the shop-front photo and logo), the website, the page and its
+breadcrumb, plus page-specific nodes passed in the `schema` prop (the printing page adds a `Service`). The thank-you
+page has none. Social tags: `og:*` and `twitter:*` come from the same values; a page can override the social title,
+description and image (`ogTitle`, `ogDescription`, `ogImage`, `ogAlt`).
+
 ## Thank-you page
 
 After a successful send the form redirects to `/thank-you/` (`/fr/thank-you/`), a full-screen page over
