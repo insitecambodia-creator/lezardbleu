@@ -1,13 +1,19 @@
 ---
 import { site, type Locale } from '../config';
 import { getContent, localePath } from '../i18n';
-import { QUOTE_KEYS, QUOTE_OPTIONS } from '../quote-schema';
+import { QUOTE_FORMS, quoteKeys, type QuoteKind } from '../quote-schema';
 
-const { locale } = Astro.props as { locale: Locale };
+const { locale, kind = 'framing' } = Astro.props as { locale: Locale; kind?: QuoteKind };
 const t = getContent(locale);
-const q = t.quote;
+const q = t.quote; // shared labels (next, back, recap…)
 const c = t.contact;
-const total = QUOTE_KEYS.length + 1; // the questions, then the contact details
+const keys = quoteKeys(kind);
+const steps = (kind === 'printing' ? t.printQuote.steps : q.steps) as Record<
+  string,
+  { legend: string; hint?: string; options: Record<string, string> }
+>;
+const options = QUOTE_FORMS[kind].options as Record<string, readonly string[]>;
+const total = keys.length + 1; // the questions, then the contact details
 // Turnstile has no Khmer widget language; let it detect the browser language instead.
 const turnstileLang = locale === 'km' ? 'auto' : locale;
 ---
@@ -20,6 +26,8 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
       action="/api/contact"
       novalidate
       data-total={total}
+      data-form-type={QUOTE_FORMS[kind].formType}
+      data-event={`${kind}_quote_submit`}
       data-step-of={q.stepOf}
       data-sending={q.sending}
       data-error={c.error}
@@ -32,17 +40,17 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
       </div>
 
       {
-        QUOTE_KEYS.map((key, i) => {
-          const step = q.steps[key];
+        keys.map((key, i) => {
+          const step = steps[key];
           return (
             <fieldset class="quote__step" data-step={i} data-key={key}>
               <legend tabindex="-1">{step.legend}</legend>
               {step.hint && <p class="quote__hint">{step.hint}</p>}
               <div class="choices">
-                {QUOTE_OPTIONS[key].map((value) => (
+                {options[key].map((value) => (
                   <label class="choice">
                     <input type="radio" name={key} value={value} required />
-                    <span>{(step.options as Record<string, string>)[value]}</span>
+                    <span>{step.options[value]}</span>
                   </label>
                 ))}
               </div>
@@ -52,7 +60,7 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
         })
       }
 
-      <fieldset class="quote__step" data-step={QUOTE_KEYS.length} data-key="contact">
+      <fieldset class="quote__step" data-step={keys.length} data-key="contact">
         <legend tabindex="-1">{q.contactLegend}</legend>
         <p class="quote__recap" data-recap hidden>
           <strong>{q.recap}:</strong> <span data-recap-text></span>
@@ -198,13 +206,14 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
       submit.disabled = true;
       say('pending', form.dataset.sending ?? '');
       try {
-        const answer = (key: string) => String(data.get(key) ?? '');
+        const quote: Record<string, string> = {};
+        for (const step of steps.slice(0, -1)) quote[step.dataset.key!] = String(data.get(step.dataset.key!) ?? '');
         const res = await fetch(form.action, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            formType: 'framing-quote',
-            quote: { item: answer('item'), have: answer('have'), size: answer('size'), style: answer('style'), timing: answer('timing') },
+            formType: form.dataset.formType,
+            quote,
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
             email: data.get('email'),
@@ -218,7 +227,7 @@ const turnstileLang = locale === 'km' ? 'auto' : locale;
         });
         const json = (await res.json().catch(() => ({}))) as { ok?: boolean };
         if (!res.ok || !json.ok) throw new Error('failed');
-        (window as any).dataLayer?.push({ event: 'framing_quote_submit' });
+        (window as any).dataLayer?.push({ event: form.dataset.event });
         try {
           sessionStorage.setItem('lb-thanks-name', String(data.get('firstName') ?? '').trim().slice(0, 40));
         } catch {}

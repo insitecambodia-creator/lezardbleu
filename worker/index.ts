@@ -5,7 +5,7 @@
  * POST /api/contact  ->  validate, verify Turnstile, forward to the n8n webhook.
  */
 
-import { parseQuote, quoteSummary } from '../src/quote-schema';
+import { QUOTE_FORMS, parseQuote, quoteInterests, quoteKindFromFormType, quoteSummary } from '../src/quote-schema';
 
 interface Env {
   ASSETS: Fetcher;
@@ -25,7 +25,7 @@ interface Enquiry {
   locale?: unknown;
   pageUrl?: unknown;
   turnstileToken?: unknown;
-  /** 'framing-quote' for the multi-step quote form; absent for the contact form */
+  /** 'framing-quote' or 'printing-quote' for the multi-step quote forms; absent for the contact form */
   formType?: unknown;
   quote?: unknown;
 }
@@ -89,16 +89,17 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   const locale = LOCALES.includes(data.locale as string) ? (data.locale as string) : 'en';
   let message = text(data.message, 3000);
 
-  // Framing-quote form: every answer must be one of the known options. The answers are also written, in English,
-  // at the top of `message`, so an n8n flow built for the contact form (name, email, phone, topics, message)
-  // keeps working and the shop sees the whole request in one cell.
-  const isQuote = data.formType === 'framing-quote';
-  const quote = isQuote ? parseQuote(data.quote) : null;
-  if (isQuote) {
+  // Quote forms (framing or printing): every answer must be one of the known options. The answers are also written,
+  // in English, at the top of `message`, so an n8n flow built for the contact form (name, email, phone, topics,
+  // message) keeps working and the shop sees the whole request in one cell.
+  const kind = quoteKindFromFormType(data.formType);
+  if (data.formType !== undefined && !kind) return json({ ok: false, error: 'invalid' }, 400);
+  const quote = kind ? parseQuote(kind, data.quote) : null;
+  if (kind) {
     if (!quote) return json({ ok: false, error: 'invalid' }, 400);
-    interests = quote.have === 'digital' ? ['framing', 'printing'] : ['framing'];
+    interests = quoteInterests(kind, quote);
     const notes = message;
-    message = (quoteSummary(quote) + (notes ? `\n\nNotes: ${notes}` : '')).slice(0, 3000);
+    message = (quoteSummary(kind, quote) + (notes ? `\n\nNotes: ${notes}` : '')).slice(0, 3000);
   }
 
   const payload = {
@@ -108,7 +109,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     phone: text(data.phone, 40),
     interests,
     message,
-    ...(quote ? { formType: 'framing-quote', quote } : {}),
+    ...(kind && quote ? { formType: QUOTE_FORMS[kind].formType, quote } : {}),
     locale,
     pageUrl: text(data.pageUrl, 300),
     submittedAt: new Date().toISOString(),

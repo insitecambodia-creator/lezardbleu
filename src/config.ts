@@ -1,6 +1,6 @@
 /** Facts that do not change per language. Edit here, not in the components. */
 export const site = {
-  name: 'Le Lezard Bleu',
+  name: 'Le Lézard Bleu',
   url: 'https://www.lezard-bleu.com',
   phone: { display: '+855 17 935 968', href: 'tel:+85517935968' },
   telegram: 'https://t.me/lezard_bleu',

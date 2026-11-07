@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { site, type Locale } from '../config';
+import { getContent, localePath } from '../i18n';
+import printer from '../assets/images/epson-surecolor-sc-p9530.webp';
+
+const { locale } = Astro.props as { locale: Locale };
+const p = getContent(locale).printingPage;
+const page = 'fine-art-printing/';
+const url = new URL(localePath(locale, page), site.url).href;
+
+// Page-specific structured data: the service (the business, website, page and breadcrumb come from the layout)
+const service = {
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: p.service.name,
+  serviceType: p.service.type,
+  description: p.service.description,
+  provider: { '@id': `${site.url}/#business` },
+  areaServed: { '@type': 'City', name: 'Phnom Penh' },
+};
+---
+
+<Layout
+  locale={locale}
+  page={page}
+  title={p.metaTitle}
+  description={p.metaDescription}
+  ogTitle={p.ogTitle}
+  ogDescription={p.ogDescription}
+  ogImage={printer}
+  ogAlt={p.ogAlt}
+  breadcrumb={[{ name: p.crumb, path: page }]}
+  schema={[service]}
+  mainEntity={`${url}#service`}
+>
+  <Header locale={locale} page={page} />
+  <main id="content">
+    <section class="print-hero" aria-labelledby="print-title">
+      <div class="wrap print-hero__inner">
+        <div class="print-hero__copy">
+          <p class="eyebrow">{p.eyebrow}</p>
+          <h1 id="print-title">{p.title}</h1>
+          <p class="print-hero__lead">{p.lead}</p>
+          <div><a class="btn" href={localePath(locale, 'printing-quote/')}>{p.cta}</a></div>
+        </div>
+        <figure class="print-hero__figure">
+          <Image
+            src={printer}
+            alt={p.imageAlt}
+            widths={[480, 720, 1080]}
+            sizes="(max-width: 48rem) 90vw, 560px"
+            loading="eager"
+            fetchpriority="high"
+            format="webp"
+          />
+          <figcaption>{p.imageCaption}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--warm" aria-labelledby="paper-title">
+      <div class="wrap print-grid">
+        <div data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <h2 id="paper-title">{p.paper.title}</h2>
+          {p.paper.text.map((t) => <p>{t}</p>)}
+        </div>
+        <div data-reveal style="--i: 1">
+          <h2 class="h2-small">{p.paper.brandsTitle}</h2>
+          <ul class="brands">
+            {p.paper.brands.map((b) => <li>{b}</li>)}
+          </ul>
+          <p>{p.paper.note}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="canvas-title">
+      <div class="wrap print-grid">
+        <div data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <h2 id="canvas-title">{p.canvas.title}</h2>
+          <p>{p.canvas.text}</p>
+        </div>
+        <ul class="specs" data-reveal style="--i: 1">
+          {p.canvas.specs.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--warm" aria-labelledby="printer-title">
+      <div class="wrap print-grid">
+        <div data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <h2 id="printer-title">{p.printer.title}</h2>
+        </div>
+        <div data-reveal style="--i: 1">
+          {p.printer.text.map((t) => <p>{t}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="frame-title">
+      <div class="wrap print-grid">
+        <div data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <h2 id="frame-title">{p.frame.title}</h2>
+        </div>
+        <div data-reveal style="--i: 1">
+          <p>{p.frame.text}</p>
+          <p><a class="text-link" href={localePath(locale, 'framing-quote/')}>{p.frame.link}</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--warm" aria-labelledby="faq-title">
+      <div class="wrap faq" data-reveal>
+        <span class="rule" aria-hidden="true"></span>
+        <h2 id="faq-title">{p.faq.title}</h2>
+        <dl>
+          {
+            p.faq.items.map((item) => (
+              <div>
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <section class="section press" aria-labelledby="final-title">
+      <div class="wrap press__inner" data-reveal>
+        <h2 id="final-title" class="print-final__title">{p.final.title}</h2>
+        <p class="print-final__text">{p.final.text}</p>
+        <div><a class="btn" href={localePath(locale, 'printing-quote/')}>{p.final.cta}</a></div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

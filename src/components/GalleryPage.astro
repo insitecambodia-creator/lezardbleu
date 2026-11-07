@@ -40,7 +40,13 @@ const items = (
 ).filter((i): i is NonNullable<typeof i> => i !== null);
 ---
 
-<Layout locale={locale} page="gallery/" title={g.metaTitle} description={g.metaDescription}>
+<Layout
+  locale={locale}
+  page="gallery/"
+  title={g.metaTitle}
+  description={g.metaDescription}
+  breadcrumb={[{ name: t.ui.gallery, path: 'gallery/' }]}
+>
   <Header locale={locale} page="gallery/" />
   <main id="content">
     <section class="section gallery-head" aria-labelledby="gallery-title">
