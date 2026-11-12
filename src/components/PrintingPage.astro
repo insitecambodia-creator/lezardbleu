@@ -6,11 +6,22 @@ import Footer from './Footer.astro';
 import { site, type Locale } from '../config';
 import { getContent, localePath } from '../i18n';
 import printer from '../assets/images/epson-surecolor-sc-p9530.webp';
+import cansonLogo from '../assets/brand/canson-logo-trimmed.svg?url';
+import hahnemuhleLogo from '../assets/brand/hahnemuhle-logo.svg?url';
+import epsonLogo from '../assets/brand/epson-logo.svg?url';
 
 const { locale } = Astro.props as { locale: Locale };
 const p = getContent(locale).printingPage;
 const page = 'fine-art-printing/';
 const url = new URL(localePath(locale, page), site.url).href;
+
+// Logos of the paper brands, by the name used in the text; a brand without a logo here is shown as plain text.
+// width/height are the files' own proportions (the displayed size is set in CSS).
+const brandLogos: Record<string, { src: string; width: number; height: number }> = {
+  Canson: { src: cansonLogo, width: 609, height: 149 },
+  'Hahnemühle': { src: hahnemuhleLogo, width: 1024, height: 255 },
+  Epson: { src: epsonLogo, width: 300, height: 74 },
+};
 
 // Page-specific structured data: the service (the business, website, page and breadcrumb come from the layout)
 const service = {
@@ -72,7 +83,25 @@ const service = {
         <div data-reveal style="--i: 1">
           <h2 class="h2-small">{p.paper.brandsTitle}</h2>
           <ul class="brands">
-            {p.paper.brands.map((b) => <li>{b}</li>)}
+            {
+              p.paper.brands.map((b) => (
+                <li>
+                  {brandLogos[b] ? (
+                    <img
+                      class={`brand-logo brand-logo--${b.toLowerCase().replace(/[^a-z]/g, '')}`}
+                      src={brandLogos[b].src}
+                      width={brandLogos[b].width}
+                      height={brandLogos[b].height}
+                      alt={b}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    b
+                  )}
+                </li>
+              ))
+            }
           </ul>
           <p>{p.paper.note}</p>
         </div>
