@@ -28,6 +28,9 @@ Internal checklist, not published on the site.
       manufacturer image (it also shows the optional SpectroProofer unit): check Epson's terms for using it, and replace
       it with a photo of your own machine when you have one. FAQ answers (paper versus canvas, care) are general
       guidance: check them, and the French. Printing quote form (`/printing-quote/`): check the six questions.
+- [ ] **Paper brand logos** (Canson, Hahnemühle, Epson) on `/fine-art-printing/` (`src/assets/brand/`, wired in
+      `src/components/PrintingPage.astro`): confirm the brands' guidelines allow a reseller to show their logos, and
+      that the shop is entitled to name them. Unmodified, shown small on white badges, no endorsement implied.
 - [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
 - [ ] Original logo (vector) for the header.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is

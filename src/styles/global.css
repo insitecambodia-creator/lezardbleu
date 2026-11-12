@@ -1347,12 +1347,32 @@ dialog.lightbox::backdrop {
   gap: 0.6rem;
 }
 .brands li {
-  padding: 0.5rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 11.5rem;
+  min-height: 4.25rem;
+  padding: 0.75rem 1.25rem;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 2px;
   color: var(--blue);
   font-weight: 600;
+}
+/* The logos keep their own colours; each is sized so the three look about equally weighty */
+.brand-logo {
+  display: block;
+  height: auto;
+}
+.brand-logo--canson {
+  width: 8.5rem;
+}
+.brand-logo--hahnemhle,
+.brand-logo--hahnemuhle {
+  width: 8.5rem;
+}
+.brand-logo--epson {
+  width: 6.75rem;
 }
 .specs {
   display: grid;

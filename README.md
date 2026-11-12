@@ -130,6 +130,10 @@ caption "Manufacturer image"). It states only confirmed facts: the printer model
 that canvas stretching is offered. It does not name papers, finishes, sizes or who applies the varnish; add those
 when they are confirmed.
 
+The "Our Fine Art Papers" list shows the Canson, Hahnemühle and Epson logos (SVGs in `src/assets/brand/`, mapped by
+brand name in `src/components/PrintingPage.astro`; sizes in `.brand-logo--*` in `global.css`). A brand without a logo
+file falls back to its name as text.
+
 `/printing-quote/` (`/fr/printing-quote/`) is a second multi-step quote form, built on the same component as the
 framing one. Both forms are defined in `src/quote-schema.ts` (questions and answer keys) and send the same payload to
 `/api/contact` and your n8n webhook, with `formType` set to `framing-quote` or `printing-quote`, the answers in
