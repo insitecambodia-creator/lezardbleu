@@ -30,6 +30,8 @@ export interface Content {
     quote: string;
     printing: string;
   };
+  /** Temporary banner on the home page (see `notice` in src/config.ts for the dates) */
+  notice: { title: string; text: string };
   /** Hero H1, one entry per line */
   hero: { eyebrow: string; title: string[]; cta: string; imageAlt: string };
   atelier: { title: string; paragraphs: string[]; cta: string };

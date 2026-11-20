@@ -215,6 +215,26 @@ h3 {
   cursor: progress;
 }
 
+/* ---------- Temporary notice (home page) ---------- */
+.notice {
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.notice[hidden] {
+  display: none;
+}
+.notice__text {
+  margin: 0;
+  padding-block: 0.7rem;
+  text-align: center;
+  text-wrap: balance;
+}
+.notice strong {
+  font-weight: 600;
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky;

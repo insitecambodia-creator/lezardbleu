@@ -22,6 +22,10 @@ export const en: Content = {
     quote: 'Framing quote',
     printing: 'Fine art printing',
   },
+  notice: {
+    title: 'Holiday closure',
+    text: 'The workshop is closed from 22 to 25 November. Our boutique on Street 240 stays open every day until 5 pm. You can still order framing and printing: we will take your order now and make it after the break.',
+  },
   hero: {
     eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Custom Framing', '& Fine Art Printing', 'in Phnom Penh'],
