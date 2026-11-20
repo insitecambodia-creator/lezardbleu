@@ -23,6 +23,10 @@ export const fr: Content = {
     quote: 'Devis d’encadrement',
     printing: 'Impression d’art',
   },
+  notice: {
+    title: 'Fermeture de l’atelier',
+    text: 'L’atelier sera fermé du 22 au 25 novembre. Notre boutique de la rue 240 reste ouverte tous les jours jusqu’à 17 h. Vous pouvez toujours commander encadrement et impression : nous prenons votre commande dès maintenant et la réalisons après la pause.',
+  },
   hero: {
     eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Encadrement sur mesure', 'et impression d’art', 'à Phnom Penh'],
@@ -63,6 +67,7 @@ export const fr: Content = {
       'Que vous souhaitiez reproduire l’œuvre d’un artiste, agrandir une photographie précieuse ou préparer une pièce pour une exposition, nous pouvons l’imprimer et l’encadrer, sous un même toit.',
     ],
     imageAlt: 'Une imprimante grand format réalisant un tirage au fusain d’une danseuse classique khmère',
+    imageCaption: 'Œuvre de @Eriel',
     cta: 'Se renseigner sur l’impression',
     learnMore: 'En savoir plus sur l’impression d’art',
   },

@@ -22,6 +22,10 @@ export const en: Content = {
     quote: 'Framing quote',
     printing: 'Fine art printing',
   },
+  notice: {
+    title: 'Holiday closure',
+    text: 'The workshop is closed from 22 to 25 November. Our boutique on Street 240 stays open every day until 5 pm. You can still order framing and printing: we will take your order now and make it after the break.',
+  },
   hero: {
     eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Custom Framing', '& Fine Art Printing', 'in Phnom Penh'],
@@ -62,6 +66,7 @@ export const en: Content = {
       'Whether you’re reproducing an artist’s work, enlarging a treasured photograph, or preparing a piece for exhibition, we can print it and frame it, all under one roof.',
     ],
     imageAlt: 'A large-format printer producing a charcoal-style print of a Khmer classical dancer',
+    imageCaption: 'Artwork from @Eriel',
     cta: 'Ask about printing',
     learnMore: 'Learn more about fine art printing',
   },

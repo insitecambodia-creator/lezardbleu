@@ -19,6 +19,12 @@ export const site = {
     country: 'KH',
     countryName: 'Cambodia',
   },
+  /**
+   * Temporary banner at the top of the home page. It disappears by itself after `endsOn`
+   * (last day it is shown, Phnom Penh time). To remove it sooner, set `endsOn` to a past date;
+   * for a new notice, change the dates and the `notice` text in src/i18n/en.ts and fr.ts.
+   */
+  notice: { endsOn: '2026-11-25' },
   gtmId: import.meta.env.PUBLIC_GTM_ID || 'GTM-MRLX8NV6',
   turnstileSiteKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '',
 } as const;

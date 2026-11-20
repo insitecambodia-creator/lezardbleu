@@ -215,6 +215,26 @@ h3 {
   cursor: progress;
 }
 
+/* ---------- Temporary notice (home page) ---------- */
+.notice {
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.notice[hidden] {
+  display: none;
+}
+.notice__text {
+  margin: 0;
+  padding-block: 0.7rem;
+  text-align: center;
+  text-wrap: balance;
+}
+.notice strong {
+  font-weight: 600;
+}
+
 /* ---------- Header ---------- */
 .site-header {
   position: sticky;
@@ -453,6 +473,14 @@ h3 {
 .split__media img {
   width: 100%;
   height: auto;
+}
+.split__figure {
+  margin: 0;
+}
+.split__figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  text-align: center;
 }
 .split--single {
   grid-template-columns: minmax(0, 40rem);

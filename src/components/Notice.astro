@@ -1,0 +1,30 @@
+---
+import { site, type Locale } from '../config';
+import { getContent } from '../i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const t = getContent(locale);
+
+// Phnom Penh is UTC+7. Not rendered at all once the last day has passed (on the next build);
+// the inline script below also hides it for visitors on a page built earlier.
+const today = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10);
+const show = today <= site.notice.endsOn;
+---
+
+{
+  show && (
+    <div class="notice" role="note" data-notice-ends={site.notice.endsOn}>
+      <p class="wrap notice__text">
+        <strong>{t.notice.title}.</strong> {t.notice.text}
+      </p>
+    </div>
+    <script is:inline>
+      (function () {
+        var el = document.querySelector('[data-notice-ends]');
+        if (!el) return;
+        var today = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10);
+        if (today > el.getAttribute('data-notice-ends')) el.hidden = true;
+      })();
+    </script>
+  )
+}
