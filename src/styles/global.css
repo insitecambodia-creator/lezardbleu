@@ -474,6 +474,14 @@ h3 {
   width: 100%;
   height: auto;
 }
+.split__figure {
+  margin: 0;
+}
+.split__figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
 .split--single {
   grid-template-columns: minmax(0, 40rem);
 }

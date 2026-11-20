@@ -36,7 +36,7 @@ export interface Content {
   hero: { eyebrow: string; title: string[]; cta: string; imageAlt: string };
   atelier: { title: string; paragraphs: string[]; cta: string };
   services: { title: string; items: Service[]; cta: string };
-  printing: { title: string; paragraphs: string[]; imageAlt: string; cta: string; learnMore: string };
+  printing: { title: string; paragraphs: string[]; imageAlt: string; imageCaption: string; cta: string; learnMore: string };
   antiques: { title: string; paragraphs: string[]; galleryCta: string; imageAlt: string };
   gallery: {
     metaTitle: string;

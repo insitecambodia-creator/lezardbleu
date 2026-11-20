@@ -66,6 +66,7 @@ export const en: Content = {
       'Whether you’re reproducing an artist’s work, enlarging a treasured photograph, or preparing a piece for exhibition, we can print it and frame it, all under one roof.',
     ],
     imageAlt: 'A large-format printer producing a charcoal-style print of a Khmer classical dancer',
+    imageCaption: 'Artwork from @Eriel',
     cta: 'Ask about printing',
     learnMore: 'Learn more about fine art printing',
   },

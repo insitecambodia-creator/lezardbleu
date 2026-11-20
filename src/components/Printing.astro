@@ -12,7 +12,10 @@ const pageHref = localePath(locale, 'fine-art-printing/');
 <section class="section" aria-labelledby="printing-title">
   <div class="wrap split">
     <div class="split__media" data-reveal>
-      <Image src={printing} alt={t.imageAlt} widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
+      <figure class="split__figure">
+        <Image src={printing} alt={t.imageAlt} widths={[480, 720, 1080]} sizes="(max-width: 48rem) 100vw, 50vw" format="webp" />
+        <figcaption>{t.imageCaption}</figcaption>
+      </figure>
     </div>
     <div class="split__body" data-reveal style="--i: 1">
       <span class="rule" aria-hidden="true"></span>

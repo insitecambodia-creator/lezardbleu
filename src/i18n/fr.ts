@@ -67,6 +67,7 @@ export const fr: Content = {
       'Que vous souhaitiez reproduire l’œuvre d’un artiste, agrandir une photographie précieuse ou préparer une pièce pour une exposition, nous pouvons l’imprimer et l’encadrer, sous un même toit.',
     ],
     imageAlt: 'Une imprimante grand format réalisant un tirage au fusain d’une danseuse classique khmère',
+    imageCaption: 'Œuvre de @Eriel',
     cta: 'Se renseigner sur l’impression',
     learnMore: 'En savoir plus sur l’impression d’art',
   },
