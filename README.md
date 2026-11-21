@@ -121,6 +121,13 @@ in Cloudflare. The Worker rejects any answer that is not one of the known option
 
 After sending, the visitor goes to the thank-you page. The data layer event is `framing_quote_submit`.
 
+## Custom framing page
+
+`/custom-framing/` (`/fr/custom-framing/`) explains how framing works (five steps) and the options: frames, mounts and
+finishing, glass or acrylic, what can be framed, a FAQ and a link to the framing quote. All text is under `framingPage` in
+`src/i18n/` (the option groups are a list, so one can be added or removed there); the component is
+`src/components/FramingPage.astro`; the photo is `src/assets/gallery/le-lezard-bleu2.webp`. It is linked from the footer and the 404 page.
+
 ## Fine art printing page and printing quote
 
 `/fine-art-printing/` (`/fr/fine-art-printing/`): the dedicated printing page, built from the owner's SEO brief. Text
