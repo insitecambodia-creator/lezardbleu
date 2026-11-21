@@ -21,6 +21,7 @@ export const en: Content = {
     home: 'Home',
     quote: 'Framing quote',
     printing: 'Fine art printing',
+    framing: 'Custom framing',
   },
   notice: {
     title: 'Holiday closure',
@@ -316,6 +317,155 @@ export const en: Content = {
       type: 'Fine art paper printing and cotton canvas printing',
       description:
         'Professional fine art printing using an Epson SureColor SC-P9530 with 12-colour pigment inks, with a selection of Canson, Hahnemühle and Epson papers and heavyweight 380 g/m² matte cotton canvas. Custom framing is also available.',
+    },
+  },
+  framingPage: {
+    metaTitle: 'Custom Framing in Phnom Penh: Process and Options | Le Lézard Bleu',
+    metaDescription:
+      'How custom framing works at Le Lézard Bleu in Phnom Penh, and the options we offer: wood and metal frames, mounts, anti-reflective and UV-protective glass, acrylic.',
+    ogTitle: 'Custom Framing in Phnom Penh | Le Lézard Bleu',
+    ogDescription:
+      'From the first conversation to collecting your frame: how custom framing works at Le Lézard Bleu, and the frames, mounts and glazing to choose from.',
+    ogAlt: 'A wall of frame mouldings in gold and dark wood at Le Lézard Bleu',
+    crumb: 'Custom Framing',
+    eyebrow: 'Custom framing in Phnom Penh',
+    title: 'Custom Framing, Step by Step',
+    lead: 'Every piece is framed to suit the work and the space it will hang in. Here is how it works at our workshop on Street 240, and the choices we will help you make.',
+    cta: 'Request a framing quote',
+    imageAlt: 'A wall of frame mouldings in gold and dark wood',
+    imageCaption: 'Frame mouldings in the shop',
+    process: {
+      title: 'How It Works',
+      steps: [
+        {
+          title: 'Tell us about your piece',
+          text: 'Bring it to the shop on Street 240, or tell us about it first: what it is, roughly how big it is and where it will hang.',
+        },
+        {
+          title: 'Choose the frame, mount and glazing',
+          text: 'We show you the options and help you choose what suits the work and your space.',
+        },
+        {
+          title: 'Measurements and quote',
+          text: 'We measure the piece and give you a quote based on its size and the choices you have made.',
+        },
+        {
+          title: 'We make the frame',
+          text: 'Your frame is made and assembled in our workshop.',
+        },
+        {
+          title: 'Collect your framed piece',
+          text: 'We let you know when it is ready to collect from the shop.',
+        },
+      ],
+      note: 'How long it takes depends on the piece and the choices made. Tell us when you need it and we will tell you what is possible.',
+    },
+    groups: [
+      {
+        id: 'frames',
+        title: 'Choose a Frame',
+        text: 'The frame sets the tone for the whole piece. We make frames in:',
+        items: [
+          { name: 'Wood mouldings', text: 'Wood in a range of tones and finishes, for a classic or warm look.' },
+          { name: 'Metal and aluminium', text: 'Slim, clean-lined frames for a modern, minimal look.' },
+          {
+            name: 'Floating frames',
+            text: 'Made for stretched canvas: the canvas sits inside with a small gap around it, so its edges stay visible.',
+          },
+          {
+            name: 'Deep box frames',
+            text: 'Extra depth for objects, memorabilia, textiles and other three-dimensional pieces.',
+          },
+        ],
+      },
+      {
+        id: 'mounts',
+        title: 'Mounts and Finishing',
+        text: 'How the work is presented inside the frame matters as much as the frame itself.',
+        items: [
+          {
+            name: 'Mount board (passe-partout)',
+            text: 'A card border between the artwork and the frame, giving the piece room to breathe.',
+          },
+          {
+            name: 'Double or coloured mounts',
+            text: 'Two layers, or a colour chosen to pick up a tone in the artwork, for extra depth.',
+          },
+          {
+            name: 'Dry mounting and backing',
+            text: 'The work is attached flat to a board so that it stays smooth. This is permanent, so we will talk it through with you first for original or valuable pieces.',
+          },
+          {
+            name: 'Canvas stretching',
+            text: 'Painted or printed canvas stretched tight, ready to hang or to sit in a floating frame.',
+          },
+        ],
+      },
+      {
+        id: 'glazing',
+        title: 'Glass or Acrylic',
+        text: 'Glazing protects the surface of a work on paper from dust and handling. We offer:',
+        items: [
+          { name: 'Standard clear glass', text: 'Clear, classic picture glass.' },
+          {
+            name: 'Anti-reflective glass',
+            text: 'Reduces glare and reflections, useful in bright rooms or for work you want to see clearly from any angle.',
+          },
+          { name: 'UV-protective glass', text: 'Helps protect the work from fading caused by light.' },
+          {
+            name: 'Acrylic (Perspex)',
+            text: 'Lighter than glass and more resistant to breakage, a good choice for large pieces.',
+          },
+        ],
+        note: 'Not sure what suits your piece? Tell us about it and we will advise.',
+      },
+    ],
+    what: {
+      title: 'What We Frame',
+      text: 'If it can hang on a wall or sit behind a pane, we can talk about framing it.',
+      specs: [
+        'Photographs',
+        'Paintings and drawings',
+        'Prints, posters and certificates',
+        'Objects and memorabilia',
+      ],
+    },
+    printFrame: {
+      title: 'Need It Printed First?',
+      text: 'We print fine art on quality papers and cotton canvas, then frame the result at the same shop: print it and frame it, all under one roof.',
+      link: 'Learn more about fine art printing',
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        {
+          q: 'How long does framing take?',
+          a: 'It depends on the piece, the frame and the choices you make. Tell us when you need it and we will tell you what is possible.',
+        },
+        {
+          q: 'How much will it cost?',
+          a: 'The price depends on the size of the work, the frame, the mount and the glazing. Visit the shop on Street 240, or send a framing quote request and we will come back to you.',
+        },
+        {
+          q: 'Can you help me choose?',
+          a: 'Of course. Tell us about the piece and where it will hang, and we will suggest a frame, a mount and glazing to suit it.',
+        },
+        {
+          q: 'Can you frame objects, not just pictures?',
+          a: 'Yes. Deep box frames give objects, textiles and memorabilia the depth they need. Bring the piece to the shop and we will suggest how to present it.',
+        },
+      ],
+    },
+    final: {
+      title: 'Discuss Your Framing Project',
+      text: 'Bring your piece to the shop on Street 240 and we will help you choose, or send us a quote request with a few details first.',
+      cta: 'Request a framing quote',
+    },
+    service: {
+      name: 'Custom Framing',
+      type: 'Custom picture framing',
+      description:
+        'Custom framing in Phnom Penh: wood and metal frames, floating frames for canvas, deep box frames for objects, mount boards, dry mounting, canvas stretching, and clear, anti-reflective, UV-protective or acrylic glazing.',
     },
   },
   footer: {

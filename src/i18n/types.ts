@@ -29,6 +29,7 @@ export interface Content {
     home: string;
     quote: string;
     printing: string;
+    framing: string;
   };
   /** Temporary banner on the home page (see `notice` in src/config.ts for the dates) */
   notice: { title: string; text: string };
@@ -122,6 +123,29 @@ export interface Content {
     canvas: { title: string; text: string; specs: string[] };
     printer: { title: string; text: string[] };
     frame: { title: string; text: string; link: string };
+    faq: { title: string; items: { q: string; a: string }[] };
+    final: { title: string; text: string; cta: string };
+    service: { name: string; type: string; description: string };
+  };
+  /** The custom framing page (/custom-framing/): the process and the options */
+  framingPage: {
+    metaTitle: string;
+    metaDescription: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogAlt: string;
+    crumb: string;
+    eyebrow: string;
+    title: string;
+    lead: string;
+    cta: string;
+    imageAlt: string;
+    imageCaption: string;
+    process: { title: string; steps: { title: string; text: string }[]; note: string };
+    /** frames, mounts, glazing: each a titled group of named options */
+    groups: { id: string; title: string; text: string; items: { name: string; text: string }[]; note?: string }[];
+    what: { title: string; text: string; specs: string[] };
+    printFrame: { title: string; text: string; link: string };
     faq: { title: string; items: { q: string; a: string }[] };
     final: { title: string; text: string; cta: string };
     service: { name: string; type: string; description: string };

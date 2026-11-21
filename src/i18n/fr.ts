@@ -22,6 +22,7 @@ export const fr: Content = {
     home: 'Accueil',
     quote: 'Devis d’encadrement',
     printing: 'Impression d’art',
+    framing: 'Encadrement sur mesure',
   },
   notice: {
     title: 'Fermeture de l’atelier',
@@ -332,6 +333,155 @@ export const fr: Content = {
       type: 'Impression d’art sur papier et sur toile de coton',
       description:
         'Impression d’art professionnelle avec une Epson SureColor SC-P9530 et des encres pigmentaires à 12 couleurs, sur une sélection de papiers Canson, Hahnemühle et Epson et sur toile de coton mate de 380 g/m². Encadrement sur mesure également disponible.',
+    },
+  },
+  framingPage: {
+    metaTitle: 'Encadrement sur mesure à Phnom Penh : étapes et options | Le Lézard Bleu',
+    metaDescription:
+      'Comment se déroule un encadrement sur mesure au Lézard Bleu à Phnom Penh, et les options proposées : cadres bois et métal, passe-partout, verre anti-reflet ou anti-UV, acrylique.',
+    ogTitle: 'Encadrement sur mesure à Phnom Penh | Le Lézard Bleu',
+    ogDescription:
+      'De la première discussion au retrait de votre cadre : le déroulement d’un encadrement sur mesure au Lézard Bleu, et les cadres, passe-partout et vitrages au choix.',
+    ogAlt: 'Un mur de moulures de cadres, dorées et en bois foncé, au Lézard Bleu',
+    crumb: 'Encadrement sur mesure',
+    eyebrow: 'Encadrement sur mesure à Phnom Penh',
+    title: 'L’encadrement sur mesure, étape par étape',
+    lead: 'Chaque œuvre est encadrée en fonction de sa nature et de l’endroit où elle sera accrochée. Voici comment cela se passe dans notre atelier de la rue 240, et les choix que nous vous aiderons à faire.',
+    cta: 'Demander un devis d’encadrement',
+    imageAlt: 'Un mur de moulures de cadres, dorées et en bois foncé',
+    imageCaption: 'Moulures de cadres dans la boutique',
+    process: {
+      title: 'Comment ça se passe',
+      steps: [
+        {
+          title: 'Parlez-nous de votre pièce',
+          text: 'Apportez-la à la boutique, rue 240, ou parlez-nous-en d’abord : de quoi s’agit-il, quelle est sa taille approximative et où sera-t-elle accrochée.',
+        },
+        {
+          title: 'Choisissez le cadre, le passe-partout et le vitrage',
+          text: 'Nous vous présentons les options et vous aidons à choisir ce qui convient à l’œuvre et à votre intérieur.',
+        },
+        {
+          title: 'Mesures et devis',
+          text: 'Nous mesurons la pièce et vous établissons un devis selon sa taille et vos choix.',
+        },
+        {
+          title: 'Nous fabriquons le cadre',
+          text: 'Votre cadre est réalisé et assemblé dans notre atelier.',
+        },
+        {
+          title: 'Récupérez votre pièce encadrée',
+          text: 'Nous vous prévenons dès qu’elle est prête à être retirée à la boutique.',
+        },
+      ],
+      note: 'Le délai dépend de la pièce et des choix effectués. Dites-nous pour quand vous en avez besoin, nous vous dirons ce qui est possible.',
+    },
+    groups: [
+      {
+        id: 'frames',
+        title: 'Choisir un cadre',
+        text: 'Le cadre donne le ton à l’ensemble. Nous réalisons des cadres en :',
+        items: [
+          { name: 'Moulures en bois', text: 'Du bois en différentes teintes et finitions, pour un style classique ou chaleureux.' },
+          { name: 'Métal et aluminium', text: 'Des cadres fins aux lignes épurées, pour un style moderne et minimaliste.' },
+          {
+            name: 'Caisses américaines (cadres flottants)',
+            text: 'Conçus pour les toiles tendues : la toile est placée à l’intérieur avec un léger espace tout autour, de sorte que ses bords restent visibles.',
+          },
+          {
+            name: 'Cadres-vitrines',
+            text: 'Une profondeur supplémentaire pour les objets, souvenirs, textiles et autres pièces en volume.',
+          },
+        ],
+      },
+      {
+        id: 'mounts',
+        title: 'Passe-partout et finitions',
+        text: 'La façon dont l’œuvre est présentée dans le cadre compte autant que le cadre lui-même.',
+        items: [
+          {
+            name: 'Passe-partout',
+            text: 'Une bordure de carton entre l’œuvre et le cadre, qui laisse respirer la pièce.',
+          },
+          {
+            name: 'Passe-partout double ou coloré',
+            text: 'Deux épaisseurs, ou une couleur choisie pour reprendre un ton de l’œuvre, pour plus de profondeur.',
+          },
+          {
+            name: 'Contrecollage à sec et support',
+            text: 'L’œuvre est fixée à plat sur un support pour rester bien lisse. C’est définitif : nous en discutons d’abord avec vous pour les pièces originales ou de valeur.',
+          },
+          {
+            name: 'Montage sur châssis',
+            text: 'Toile peinte ou imprimée tendue sur un châssis, prête à accrocher ou à placer dans un cadre flottant.',
+          },
+        ],
+      },
+      {
+        id: 'glazing',
+        title: 'Verre ou acrylique',
+        text: 'Le vitrage protège la surface d’une œuvre sur papier de la poussière et des manipulations. Nous proposons :',
+        items: [
+          { name: 'Verre clair standard', text: 'Un verre à encadrer clair et classique.' },
+          {
+            name: 'Verre anti-reflet',
+            text: 'Réduit l’éblouissement et les reflets, utile dans une pièce lumineuse ou pour voir l’œuvre nettement sous tous les angles.',
+          },
+          { name: 'Verre anti-UV', text: 'Aide à protéger l’œuvre contre la décoloration due à la lumière.' },
+          {
+            name: 'Acrylique (Plexiglas)',
+            text: 'Plus léger que le verre et plus résistant à la casse, un bon choix pour les grandes pièces.',
+          },
+        ],
+        note: 'Vous ne savez pas ce qui convient à votre pièce ? Parlez-nous-en et nous vous conseillerons.',
+      },
+    ],
+    what: {
+      title: 'Ce que nous encadrons',
+      text: 'Tout ce qui peut s’accrocher au mur ou se glisser derrière une vitre, nous pouvons en parler.',
+      specs: [
+        'Photographies',
+        'Peintures et dessins',
+        'Estampes, affiches et diplômes',
+        'Objets et souvenirs',
+      ],
+    },
+    printFrame: {
+      title: 'Besoin de l’imprimer d’abord ?',
+      text: 'Nous imprimons des tirages d’art sur papiers de qualité et sur toile de coton, puis nous encadrons le résultat dans la même boutique : imprimé et encadré, sous le même toit.',
+      link: 'En savoir plus sur l’impression d’art',
+    },
+    faq: {
+      title: 'Questions fréquentes',
+      items: [
+        {
+          q: 'Combien de temps faut-il pour encadrer ?',
+          a: 'Cela dépend de la pièce, du cadre et de vos choix. Dites-nous pour quand vous en avez besoin, nous vous dirons ce qui est possible.',
+        },
+        {
+          q: 'Combien cela coûte-t-il ?',
+          a: 'Le prix dépend de la taille de l’œuvre, du cadre, du passe-partout et du vitrage. Passez à la boutique, rue 240, ou envoyez une demande de devis d’encadrement et nous reviendrons vers vous.',
+        },
+        {
+          q: 'Pouvez-vous m’aider à choisir ?',
+          a: 'Bien sûr. Parlez-nous de la pièce et de l’endroit où elle sera accrochée, et nous vous proposerons un cadre, un passe-partout et un vitrage adaptés.',
+        },
+        {
+          q: 'Encadrez-vous des objets, pas seulement des tableaux ?',
+          a: 'Oui. Les cadres-vitrines donnent aux objets, textiles et souvenirs la profondeur dont ils ont besoin. Apportez la pièce à la boutique et nous vous suggérerons comment la présenter.',
+        },
+      ],
+    },
+    final: {
+      title: 'Parlons de votre projet d’encadrement',
+      text: 'Apportez votre pièce à la boutique, rue 240, et nous vous aiderons à choisir, ou envoyez-nous d’abord une demande de devis avec quelques détails.',
+      cta: 'Demander un devis d’encadrement',
+    },
+    service: {
+      name: 'Encadrement sur mesure',
+      type: 'Encadrement sur mesure',
+      description:
+        'Encadrement sur mesure à Phnom Penh : cadres en bois et en métal, cadres flottants pour toiles, cadres-vitrines pour objets, passe-partout, contrecollage à sec, montage de toiles sur châssis, vitrage clair, anti-reflet, anti-UV ou acrylique.',
     },
   },
   footer: {

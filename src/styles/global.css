@@ -1429,6 +1429,60 @@ dialog.lightbox::backdrop {
 .faq dd {
   margin: 0.4rem 0 0;
 }
+/* Framing page: numbered steps and option lists */
+.steps {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  position: relative;
+  padding-left: 3.25rem;
+  counter-increment: step;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+}
+.steps h3 {
+  margin: 0 0 0.25rem;
+}
+.steps p {
+  margin: 0;
+}
+.options {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+.options > div {
+  padding: 0.9rem 1.1rem;
+  background: #fff;
+  border-left: 3px solid var(--orange);
+}
+.section:not(.section--warm) .options > div {
+  background: var(--bg-warm);
+}
+.options dt {
+  color: var(--blue);
+  font-weight: 600;
+}
+.options dd {
+  margin: 0.25rem 0 0;
+}
 .print-final__title {
   color: #fff;
 }
