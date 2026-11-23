@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Anatomy of a Framed Artwork</title>
+  <desc id="desc">Exploded view showing a standard picture frame system: frame moulding, glazing, mat board, artwork, backing board, back cover and hanging hardware.</desc>
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#10273D" flood-opacity="0.16"/>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#10273D" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="wood" x1="0" x2="1">
+      <stop offset="0" stop-color="#172D40"/>
+      <stop offset="0.5" stop-color="#10273D"/>
+      <stop offset="1" stop-color="#24445E"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAF6FF" stop-opacity="0.68"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#CDE6F3" stop-opacity="0.48"/>
+    </linearGradient>
+    <linearGradient id="art" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FA7403"/>
+      <stop offset="0.45" stop-color="#F1A45D"/>
+      <stop offset="1" stop-color="#10273D"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#7A7A7A"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FAFAF8"/>
+
+  <text x="95" y="105" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700" fill="#10273D">Anatomy of a Framed Artwork</text>
+  <text x="97" y="146" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#7A7A7A">A typical frame system, shown from front to back</text>
+  <rect x="97" y="171" width="88" height="6" rx="3" fill="#FA7403"/>
+
+  <g transform="translate(660 520)" filter="url(#softShadow)">
+    <polygon points="-290,-145 250,-95 250,215 -290,165" fill="#D9D1C4" stroke="#B8AEA0" stroke-width="3"/>
+  </g>
+
+  <g transform="translate(625 465)" filter="url(#softShadow)">
+    <polygon points="-290,-145 250,-95 250,215 -290,165" fill="#E7E2D8" stroke="#C7C0B5" stroke-width="3"/>
+  </g>
+
+  <g transform="translate(590 410)" filter="url(#softShadow)">
+    <polygon points="-250,-125 215,-82 215,186 -250,143" fill="url(#art)" stroke="#FFFFFF" stroke-width="8"/>
+    <path d="M-220,80 C-145,20 -90,55 -20,-5 C65,-78 130,-28 185,-92" fill="none" stroke="#FFF3E5" stroke-width="14" opacity="0.85"/>
+    <circle cx="110" cy="35" r="54" fill="#F9D7B5" opacity="0.72"/>
+  </g>
+
+  <g transform="translate(555 350)" filter="url(#softShadow)">
+    <path d="M-300,-160 L260,-108 L260,222 L-300,170 Z M-235,-112 L192,-72 L192,167 L-235,127 Z"
+          fill="#FFFFFF" fill-rule="evenodd" stroke="#E5E5E5" stroke-width="3"/>
+  </g>
+
+  <g transform="translate(520 290)" filter="url(#softShadow)">
+    <polygon points="-300,-160 260,-108 260,222 -300,170" fill="url(#glass)" stroke="#AFD3E5" stroke-width="3"/>
+    <path d="M-230,-126 L180,-88" stroke="#FFFFFF" stroke-width="12" opacity="0.62"/>
+  </g>
+
+  <g transform="translate(485 225)" filter="url(#shadow)">
+    <path d="M-335,-190 L300,-132 L300,254 L-335,196 Z M-285,-138 L245,-88 L245,196 L-285,148 Z"
+          fill="url(#wood)" fill-rule="evenodd"/>
+    <path d="M-335,-190 L300,-132 L245,-88 L-285,-138 Z" fill="#2B4B64" opacity="0.8"/>
+    <path d="M300,-132 L300,254 L245,196 L245,-88 Z" fill="#0A1B29" opacity="0.75"/>
+    <path d="M-335,196 L300,254 L245,196 L-285,148 Z" fill="#071620" opacity="0.5"/>
+  </g>
+
+  <g transform="translate(723 660)" filter="url(#softShadow)">
+    <path d="M-120,0 C-60,-48 10,-48 75,0" fill="none" stroke="#6F6F6F" stroke-width="6"/>
+    <circle cx="-120" cy="0" r="9" fill="#6F6F6F"/>
+    <circle cx="75" cy="0" r="9" fill="#6F6F6F"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <line x1="820" y1="116" x2="1140" y2="175" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="175" r="7" fill="#FA7403"/>
+    <text x="1170" y="168" font-size="26" font-weight="700" fill="#10273D">Frame moulding</text>
+    <text x="1170" y="198" font-size="18" fill="#7A7A7A">Wood, aluminium or composite profile</text>
+
+    <line x1="807" y1="258" x2="1140" y2="282" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="282" r="7" fill="#FA7403"/>
+    <text x="1170" y="275" font-size="26" font-weight="700" fill="#10273D">Glass / acrylic glazing</text>
+    <text x="1170" y="305" font-size="18" fill="#7A7A7A">Protects the artwork from dust and handling</text>
+
+    <line x1="820" y1="360" x2="1140" y2="380" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="380" r="7" fill="#FA7403"/>
+    <text x="1170" y="373" font-size="26" font-weight="700" fill="#10273D">Mat board</text>
+    <text x="1170" y="403" font-size="18" fill="#7A7A7A">Creates visual space and separates art from glazing</text>
+
+    <line x1="818" y1="455" x2="1140" y2="478" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="478" r="7" fill="#FA7403"/>
+    <text x="1170" y="471" font-size="26" font-weight="700" fill="#10273D">Artwork / print</text>
+    <text x="1170" y="501" font-size="18" fill="#7A7A7A">Photo, poster, drawing or original artwork</text>
+
+    <line x1="840" y1="550" x2="1140" y2="576" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="576" r="7" fill="#FA7403"/>
+    <text x="1170" y="569" font-size="26" font-weight="700" fill="#10273D">Backing board</text>
+    <text x="1170" y="599" font-size="18" fill="#7A7A7A">Rigid support that keeps the artwork flat</text>
+
+    <line x1="850" y1="635" x2="1140" y2="670" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="670" r="7" fill="#FA7403"/>
+    <text x="1170" y="663" font-size="26" font-weight="700" fill="#10273D">Back cover / dust seal</text>
+    <text x="1170" y="693" font-size="18" fill="#7A7A7A">Closes and protects the frame assembly</text>
+
+    <line x1="800" y1="722" x2="1140" y2="760" stroke="#7A7A7A" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="1140" cy="760" r="7" fill="#FA7403"/>
+    <text x="1170" y="753" font-size="26" font-weight="700" fill="#10273D">Hanging hardware</text>
+    <text x="1170" y="783" font-size="18" fill="#7A7A7A">Wire, D-rings or another secure fixing system</text>
+  </g>
+
+  <text x="97" y="840" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#9B9B9B">
+    Typical construction — exact components vary with artwork, conservation needs and frame style.
+  </text>
+</svg>
