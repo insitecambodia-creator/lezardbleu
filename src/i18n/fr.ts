@@ -350,6 +350,40 @@ export const fr: Content = {
     cta: 'Demander un devis d’encadrement',
     imageAlt: 'Un mur de moulures de cadres, dorées et en bois foncé',
     imageCaption: 'Moulures de cadres dans la boutique',
+    anatomy: {
+      title: 'De quoi est fait un cadre',
+      text: 'Une pièce encadrée est un empilement de couches, chacune avec son rôle. Écartez-les pour voir comment le tout est construit, puis choisissez une couche pour savoir à quoi elle sert.',
+      sliderLabel: 'Assembler ou écarter les couches',
+      assembled: 'Assemblé',
+      exploded: 'Écarté',
+      jump: 'Voir les options',
+      note: 'Construction type. Les éléments exacts varient selon l’œuvre et le style de cadre.',
+      figureLabel: 'Vue éclatée d’une œuvre encadrée, du cadre à l’avant jusqu’au système d’accrochage à l’arrière',
+      layers: [
+        { id: 'frame', name: 'Moulure du cadre', text: 'Le cadre visible. En bois ou en métal, dans le profil et la finition qui conviennent à la pièce.', jump: 'frames' },
+        {
+          id: 'glazing',
+          name: 'Verre ou acrylique',
+          text: 'Protège l’œuvre de la poussière et des manipulations. Le verre anti-reflet et le verre anti-UV font partie des options.',
+          jump: 'glazing',
+        },
+        {
+          id: 'mount',
+          name: 'Passe-partout',
+          text: 'Une bordure de carton qui laisse respirer l’œuvre et l’empêche de toucher le vitrage.',
+          jump: 'mounts',
+        },
+        { id: 'artwork', name: 'L’œuvre', text: 'Votre photographie, affiche, dessin ou pièce originale.' },
+        {
+          id: 'backing',
+          name: 'Carton de fond',
+          text: 'Un support rigide derrière l’œuvre, qui la maintient bien à plat.',
+          jump: 'mounts',
+        },
+        { id: 'back', name: 'Dos de protection', text: 'Ferme l’arrière du cadre et empêche la poussière d’y entrer.' },
+        { id: 'hardware', name: 'Système d’accrochage', text: 'Fil, anneaux en D ou autre système de fixation sûr.' },
+      ],
+    },
     process: {
       title: 'Comment ça se passe',
       steps: [
