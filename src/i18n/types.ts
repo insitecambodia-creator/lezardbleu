@@ -141,6 +141,23 @@ export interface Content {
     cta: string;
     imageAlt: string;
     imageCaption: string;
+    /** Interactive exploded view of a frame; `layers` are listed front to back, ids fixed (see FrameAnatomy.astro) */
+    anatomy: {
+      title: string;
+      text: string;
+      sliderLabel: string;
+      assembled: string;
+      exploded: string;
+      jump: string;
+      note: string;
+      figureLabel: string;
+      layers: {
+        id: 'frame' | 'glazing' | 'mount' | 'artwork' | 'backing' | 'back' | 'hardware';
+        name: string;
+        text: string;
+        jump?: 'frames' | 'mounts' | 'glazing';
+      }[];
+    };
     process: { title: string; steps: { title: string; text: string }[]; note: string };
     /** frames, mounts, glazing: each a titled group of named options */
     groups: { id: string; title: string; text: string; items: { name: string; text: string }[]; note?: string }[];

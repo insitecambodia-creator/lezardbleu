@@ -128,6 +128,13 @@ finishing, glass or acrylic, what can be framed, a FAQ and a link to the framing
 `src/i18n/` (the option groups are a list, so one can be added or removed there); the component is
 `src/components/FramingPage.astro`; the photo is `src/assets/gallery/le-lezard-bleu2.webp`. It is linked from the footer and the 404 page.
 
+"What Goes Into a Frame" is an interactive exploded view (`src/components/FrameAnatomy.astro`), adapted from the owner's
+"Anatomy of a Framed Artwork" drawing. A slider assembles or pulls apart the layers; clicking or hovering a layer in the
+drawing, or a name in the list, highlights it and opens its description; each layer can link to the options below
+(`jump`). The drawing carries no text: names and descriptions are `framingPage.anatomy` in `src/i18n/` (layers listed
+front to back; their `id`s are fixed and match the drawing). Without JavaScript it shows the pulled-apart drawing and all
+descriptions. It respects reduced-motion settings. To add or remove a layer, edit the `drawing` list in the component too.
+
 ## Fine art printing page and printing quote
 
 `/fine-art-printing/` (`/fr/fine-art-printing/`): the dedicated printing page, built from the owner's SEO brief. Text

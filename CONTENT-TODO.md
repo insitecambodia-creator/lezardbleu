@@ -25,7 +25,10 @@ Internal checklist, not published on the site.
       and deep box frames, mount board, double/coloured mounts, dry mounting, canvas stretching, clear / anti-reflective /
       UV-protective / acrylic glazing). The five process steps, the short descriptions of each option, the "what we frame" list
       (taken from the quote form) and the FAQ are our wording: check them, and the French (the French terms "caisse américaine",
-      "cadres-vitrines", "contrecollage" in particular). No prices, lead times, sizes or brand names are stated. Photo: the
+      "cadres-vitrines", "contrecollage" in particular). The interactive "What Goes Into a Frame" section
+      uses the owner's exploded-view drawing (colours kept; the artwork in it is an abstract stand-in): the layer names and
+      descriptions are ours (the drawing said "wood, aluminium or composite", we wrote "wood or metal" since composite is
+      not confirmed). No prices, lead times, sizes or brand names are stated. Photo: the
       moulding wall from the gallery; replace with a better one if you have it. Not linked from the home page yet (footer and 404 only).
 - [ ] **Fine art printing page** (`/fine-art-printing/`): written only from confirmed facts. Still to confirm, then add:
       exact paper references, weights and finishes per brand; who applies the varnish and does the canvas stretching;

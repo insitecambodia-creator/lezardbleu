@@ -5,6 +5,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import { site, type Locale } from '../config';
 import { getContent, localePath } from '../i18n';
+import FrameAnatomy from './FrameAnatomy.astro';
 import mouldings from '../assets/gallery/le-lezard-bleu2.webp';
 
 const { locale } = Astro.props as { locale: Locale };
@@ -12,6 +13,10 @@ const p = getContent(locale).framingPage;
 const page = 'custom-framing/';
 const url = new URL(localePath(locale, page), site.url).href;
 const quote = localePath(locale, 'framing-quote/');
+// Sections after the hero alternate warm / white; n is the position (0 = warm)
+const tone = (n: number) => (n % 2 === 0 ? 'section section--warm' : 'section');
+const groupsStart = 2; // process (0) and anatomy (1) come first
+const afterGroups = groupsStart + p.groups.length;
 
 // Page-specific structured data (the business, website, page and breadcrumb come from the layout)
 const service = {
@@ -63,7 +68,7 @@ const service = {
       </div>
     </section>
 
-    <section class="section section--warm" aria-labelledby="process-title">
+    <section class={tone(0)} aria-labelledby="process-title">
       <div class="wrap print-grid">
         <div data-reveal>
           <span class="rule" aria-hidden="true"></span>
@@ -83,9 +88,20 @@ const service = {
       </div>
     </section>
 
+    <section class={tone(1)} aria-labelledby="anatomy-title">
+      <div class="wrap">
+        <div class="anatomy__head" data-reveal>
+          <span class="rule" aria-hidden="true"></span>
+          <h2 id="anatomy-title">{p.anatomy.title}</h2>
+          <p>{p.anatomy.text}</p>
+        </div>
+        <FrameAnatomy locale={locale} />
+      </div>
+    </section>
+
     {
       p.groups.map((g, i) => (
-        <section class={i % 2 === 0 ? 'section' : 'section section--warm'} aria-labelledby={`${g.id}-title`}>
+        <section class={tone(groupsStart + i)} aria-labelledby={`${g.id}-title`}>
           <div class="wrap print-grid">
             <div data-reveal>
               <span class="rule" aria-hidden="true" />
@@ -108,7 +124,7 @@ const service = {
       ))
     }
 
-    <section class={p.groups.length % 2 === 0 ? 'section' : 'section section--warm'} aria-labelledby="what-title">
+    <section class={tone(afterGroups)} aria-labelledby="what-title">
       <div class="wrap print-grid">
         <div data-reveal>
           <span class="rule" aria-hidden="true"></span>
@@ -121,7 +137,7 @@ const service = {
       </div>
     </section>
 
-    <section class={p.groups.length % 2 === 0 ? 'section section--warm' : 'section'} aria-labelledby="printframe-title">
+    <section class={tone(afterGroups + 1)} aria-labelledby="printframe-title">
       <div class="wrap print-grid">
         <div data-reveal>
           <span class="rule" aria-hidden="true"></span>
@@ -134,7 +150,7 @@ const service = {
       </div>
     </section>
 
-    <section class={p.groups.length % 2 === 0 ? 'section' : 'section section--warm'} aria-labelledby="faq-title">
+    <section class={tone(afterGroups + 2)} aria-labelledby="faq-title">
       <div class="wrap faq" data-reveal>
         <span class="rule" aria-hidden="true"></span>
         <h2 id="faq-title">{p.faq.title}</h2>

@@ -334,6 +334,40 @@ export const en: Content = {
     cta: 'Request a framing quote',
     imageAlt: 'A wall of frame mouldings in gold and dark wood',
     imageCaption: 'Frame mouldings in the shop',
+    anatomy: {
+      title: 'What Goes Into a Frame',
+      text: 'A framed piece is a stack of layers, each with its own job. Pull them apart to see how it is built, then choose a layer to find out what it does.',
+      sliderLabel: 'Assemble or pull apart the layers',
+      assembled: 'Assembled',
+      exploded: 'Pulled apart',
+      jump: 'See the options',
+      note: 'Typical construction. The exact components vary with the artwork and the frame style.',
+      figureLabel: 'Exploded view of a framed artwork, from the frame at the front to the hanging hardware at the back',
+      layers: [
+        { id: 'frame', name: 'Frame moulding', text: 'The visible frame. Wood or metal, in the profile and finish that suit the piece.', jump: 'frames' },
+        {
+          id: 'glazing',
+          name: 'Glass or acrylic',
+          text: 'Protects the artwork from dust and handling. Anti-reflective and UV-protective glass are among the options.',
+          jump: 'glazing',
+        },
+        {
+          id: 'mount',
+          name: 'Mount board',
+          text: 'A card border that gives the artwork room to breathe and keeps it from touching the glazing.',
+          jump: 'mounts',
+        },
+        { id: 'artwork', name: 'The artwork', text: 'Your photograph, poster, drawing or original piece.' },
+        {
+          id: 'backing',
+          name: 'Backing board',
+          text: 'A rigid support behind the artwork that keeps it flat.',
+          jump: 'mounts',
+        },
+        { id: 'back', name: 'Back cover', text: 'Closes the back of the frame and keeps dust out.' },
+        { id: 'hardware', name: 'Hanging hardware', text: 'Wire, D-rings or another secure fixing system.' },
+      ],
+    },
     process: {
       title: 'How It Works',
       steps: [
