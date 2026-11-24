@@ -31,7 +31,7 @@ export const en: Content = {
     eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Custom Framing', '& Fine Art Printing', 'in Phnom Penh'],
     cta: 'Contact us today',
-    imageAlt: 'A framed abstract painting in blue and white hanging in a bright living room',
+    imageAlt: 'White-gloved hands placing a mount board over a drawing on a workbench, with frame mouldings displayed on the wall behind',
   },
   atelier: {
     title: 'The Atelier',

@@ -40,7 +40,10 @@ Internal checklist, not published on the site.
 - [ ] **Paper brand logos** (Canson, Hahnemühle, Epson) on `/fine-art-printing/` (`src/assets/brand/`, wired in
       `src/components/PrintingPage.astro`): confirm the brands' guidelines allow a reseller to show their logos, and
       that the shop is entitled to name them. Unmodified, shown small on white badges, no endorsement implied.
-- [ ] Hero image is a staged illustration, not a real project photo. Replace with real work when possible.
+- [ ] Hero image (`src/assets/images/lezardbleu-heronov.webp`) is a staged picture, not a photo of the shop or a real project:
+      replace it with real work when possible. It shows white-gloved handling of a drawing with a mount board; make sure
+      that fits how the workshop works. The previous hero (`hero.webp`, a framed painting in a living room) is kept: it is
+      still the default social-sharing image (`src/layouts/Layout.astro`), and switching back is one line in `Hero.astro`.
 - [ ] Original logo (vector) for the header.
 - [ ] **Petit Futé quote** (`src/components/Press.astro`, text in `src/i18n/en.ts` and `fr.ts`): the French is
       their wording verbatim (first four sentences of the review, `[…]` marks the cut); the English is our

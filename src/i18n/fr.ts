@@ -32,7 +32,7 @@ export const fr: Content = {
     eyebrow: 'Le Lézard Bleu – Phnom Penh',
     title: ['Encadrement sur mesure', 'et impression d’art', 'à Phnom Penh'],
     cta: 'Contactez-nous',
-    imageAlt: 'Une peinture abstraite encadrée, bleue et blanche, accrochée dans un salon lumineux',
+    imageAlt: 'Des mains gantées de blanc posant un passe-partout sur un dessin, sur un établi, avec des échantillons de moulures de cadres au mur',
   },
   atelier: {
     title: 'L’atelier',
